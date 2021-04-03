@@ -1,3 +1,4 @@
+//REQUIRES
 require('dotenv').config();
 const express = require('express');
 const layouts = require('express-ejs-layouts');
@@ -10,7 +11,6 @@ const app = express();
 
 //MIDDLEWARE
 app.set('view engine', 'ejs');
-
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
@@ -39,6 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//ROUTES
 app.get('/', (req, res) => {
   res.render('index');
 });
