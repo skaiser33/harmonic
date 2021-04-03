@@ -24,10 +24,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       influences: {
-        type: Sequelize.ARRAY
+        type: Sequelize.ARRAY(Sequelize.TEXT)
       },
       recordingCredits: {
-        type: Sequelize.ARRAY
+        type: Sequelize.ARRAY(Sequelize.TEXT)
       },
       canRecordRemotely: {
         type: Sequelize.BOOLEAN
