@@ -16,3 +16,19 @@ sequelize model:create --name instrument --attributes name:string
 
 //GENRE MODEL
 sequelize model:create --name genre --attributes name:string
+
+//COLLABORATION MODEL
+sequelize model:create --name collaboration --attributes type:string
+
+//MESSAGE
+sequelize model:create --name message --attributes senderId:integer,recipientId:integer,content:text
+
+//TESTIMONIAL
+sequelize model:create --name testimonial --attributes senderId:integer,recipientId:integer,content:text
+
+//JOIN TABLES
+sequelize model:create --name profilesInstruments --attributes profileId:integer,instrumentId:integer
+
+sequelize model:create --name profilesGenres --attributes profileId:integer,genreId:integer
+
+sequelize model:create --name profilesCollaborations --attributes profileId:integer,collaborationId:integer

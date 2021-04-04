@@ -14,13 +14,13 @@ module.exports = {
       cityId: {
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       isBand: {
         type: Sequelize.BOOLEAN
       },
       profilePhotoUrl: {
-        type: Sequelize.STRING
-      },
-      availableFor: {
         type: Sequelize.STRING
       },
       influences: {

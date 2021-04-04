@@ -12,16 +12,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       models.profile.belongsTo(models.user)
       models.profile.belongsTo(models.city)
+      models.profile.hasMany(models.testimonial)
+      models.profile.hasMany(models.message)
       models.profile.belongsToMany(models.instrument, {through: "profilesInstruments"})
       models.profile.belongsToMany(models.genre, {through: "profilesGenres"})
+      models.profile.belongsToMany(models.collaboration, {through: "profilesCollaborations"})
     }
   };
   profile.init({
     userId: DataTypes.INTEGER,
     cityId: DataTypes.INTEGER,
+    name: DataTypes.STRING,
     isBand: DataTypes.BOOLEAN,
     profilePhotoUrl: DataTypes.STRING,
-    availableFor: DataTypes.STRING,
     influences: DataTypes.ARRAY(DataTypes.TEXT),
     recordingCredits: DataTypes.ARRAY(DataTypes.TEXT),
     canRecordRemotely: DataTypes.BOOLEAN,
