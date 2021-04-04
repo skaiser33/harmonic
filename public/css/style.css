@@ -1,9 +1,36 @@
+/* 
+TITLES? font-family: 'Bungee Inline', cursive;
+MAIN TEXT? font-family: 'Darker Grotesque', sans-serif;
+BUTTONS? LOWER HEADINGS? MAIN TEXT? font-family: 'New Tegomin', serif;
+BUTTONS? LOWER HEADINGS? MAIN TEXT? font-family: 'Rajdhani', sans-serif; */
+
+:root {
+  --red: rgb(177, 0, 0);
+  --title-font: 'Bungee Inline', cursive;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: var(--title-font);
+  /* font-family: 'Bungee Inline', cursive; */
+  color: var(--red);
+  background-color: black;
+  background: url(/assets/desktopbg.jpg) no-repeat center center fixed;
+  background-size: cover;
+  background-position:center bottom;
+  /* background-attachment: fixed;
+  background-position: center; */
+}
+
+img {
+  max-width: 100%;
+}
+
 nav ul li {
   text-decoration: none;
   display: inline-block;
   margin-right: .3em;
 }
 
-h1 {
-  color: chartreuse;
-}

@@ -185,8 +185,8 @@ module.exports = {
         spotifyEmbedUrl: "https://open.spotify.com/embed/track/46Dh8ZM4LxlOyzKypMx9kv",
         soundcloudEmbedUrl: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/400318689&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
         youtubeEmbedUrl: "https://www.youtube.com/embed/pKTOh2DZMOI",
-        localDraw: DataTypes.INTEGER,
-        nationalDraw: DataTypes.INTEGER,
+        localDraw: null,
+        nationalDraw: null,
         lastActive: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
@@ -202,8 +202,8 @@ module.exports = {
         spotifyEmbedUrl: "https://open.spotify.com/embed/track/27Hf6yJq9gQvx6b8m25Ddi",
         soundcloudEmbedUrl: null,
         youtubeEmbedUrl: "https://www.youtube.com/embed/Qx6Uv1BYdvw",
-        localDraw: DataTypes.INTEGER,
-        nationalDraw: DataTypes.INTEGER,
+        localDraw: null,
+        nationalDraw: null,
         lastActive: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
@@ -235,48 +235,48 @@ module.exports = {
 
     const bulkProfilesInstruments = await queryInterface.bulkInsert('profilesInstruments', [
       { profileId: 1,
-        genreId: 6,
+        instrumentId: 6,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       { profileId: 1,
-        genreId: 10,
+        instrumentId: 10,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       { profileId: 2,
-        genreId: 4,
+        instrumentId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       { profileId: 3,
-        genreId: 1,
+        instrumentId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       { profileId: 3,
-        genreId: 2,
+        instrumentId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       { profileId: 3,
-        genreId: 3,
+        instrumentId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       { profileId: 3,
-        genreId: 4,
+        instrumentId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       { profileId: 3,
-        genreId: 6,
+        instrumentId: 6,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       
       { profileId: 3,
-        genreId: 9,
+        instrumentId: 9,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -321,7 +321,7 @@ module.exports = {
       },
       ], { returning: true });
 
-    console.log(bulkProfilesInstruments);
+    console.log(bulkProfilesGenres);
   },
 
   down: function (queryInterface, Sequelize) {
