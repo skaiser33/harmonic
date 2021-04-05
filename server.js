@@ -50,11 +50,12 @@ app.get('/', (req, res) => {
 });
 
 // we use the middleware in the middle of our route to the profile (or any other page we want to restrict)
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
-});
+// app.get('/profile', isLoggedIn, (req, res) => {
+//   res.render('profile');
+// });
 
 app.use('/auth', require('./routes/auth'));
+app.use('/profile',  require('./routes/profile'));
 
 var server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 
