@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="/css/style.css">
+    <!-- FAVICON -->
+    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
   </head>
   <body>
     <header>
@@ -29,7 +31,7 @@
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul class="navbar-nav ml-auto">
-           <!-- if user.is_authenticated -->
+            <% if (currentUser) { %>
               <li class="nav-item">
                 <a class="nav-link" href="/about">About</a>
               </li>
@@ -43,25 +45,24 @@
               </form>
 
 
-              <!-- ELSE -->
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+              <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/signup">Signup</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Log In</a>
-              </li> -->
+                <a class="nav-link" href="/auth/login">Login</a>
+              </li>
+              <% }  %>
           </ul>
         </div>
 
-        <ul>
-          <% if (!currentUser) { %>
+        <!-- <ul>
             <li><a href="/auth/signup">Signup</a></li>
             <li><a href="/auth/login">Login</a></li>
-          <% } else { %>
+
             <li><a href="/auth/logout">Logout</a></li>
             <li><a href="/profile">Profile</a></li>
-          <% } %>
-        </ul>
+        </ul> -->
       </nav>
     </header>
     <%- include("partials/alerts") %>
