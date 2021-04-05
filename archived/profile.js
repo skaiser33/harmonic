@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.profile.belongsTo(models.user)
+      // models.profile.belongsTo(models.user)
       models.profile.belongsTo(models.city)
       models.profile.hasMany(models.testimonial)
       models.profile.hasMany(models.message)
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   profile.init({
-    userId: DataTypes.INTEGER,
+    // userId: DataTypes.INTEGER,
     cityId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     isBand: DataTypes.BOOLEAN,

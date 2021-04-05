@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      
     }
     // Compares entered password to hashed password and returns boolean
     validPassword(passwordTyped) {
@@ -51,7 +51,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Password must be between 8 and 99 characters'
         }
       }
-    }
+    },
+    profileId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'user',
