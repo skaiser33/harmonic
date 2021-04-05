@@ -17,8 +17,38 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      profileId: {
+      isBand: {
+        type: Sequelize.BOOLEAN
+      },
+      profilePhotoUrl: {
+        type: Sequelize.STRING
+      },
+      influences: {
+        type: Sequelize.ARRAY(Sequelize.TEXT)
+      },
+      recordingCredits: {
+        type: Sequelize.ARRAY(Sequelize.TEXT)
+      },
+      canRecordRemotely: {
+        type: Sequelize.BOOLEAN
+      },
+      spotifyEmbedUrl: {
+        type: Sequelize.STRING
+      },
+      soundcloudEmbedUrl: {
+        type: Sequelize.STRING
+      },
+      youtubeEmbedUrl: {
+        type: Sequelize.STRING
+      },
+      localDraw: {
         type: Sequelize.INTEGER
+      },
+      nationalDraw: {
+        type: Sequelize.INTEGER
+      },
+      lastActive: {
+        type: Sequelize.DATEONLY
       },
       createdAt: {
         allowNull: false,

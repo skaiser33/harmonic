@@ -34,9 +34,9 @@
           <ul class="navbar-nav ml-auto">
             <% if (currentUser) { %>
               <li class="nav-item">
-                <a class="nav-link" href="/profile"><%= (currentUser.dataValues)  %>'s Profile</a>
+                <a class="nav-link" href="/profile"><%= (currentUser.name)  %>'s Profile</a>
               </li>
-              <% console.log((currentUser.dataValues.profile.profilePhotoUrl)); %> 
+              <% console.log((currentUser.dataValues)); %> 
               <li class="nav-item">
                 <a class="nav-link" href="/about">About</a>
               </li>

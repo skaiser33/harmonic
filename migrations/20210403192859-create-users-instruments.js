@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('profilesInstruments', {
+    await queryInterface.createTable('usersInstruments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      profileId: {
+      userId: {
         type: Sequelize.INTEGER
       },
       instrumentId: {
@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('profilesInstruments');
+    await queryInterface.dropTable('usersInstruments');
   }
 };

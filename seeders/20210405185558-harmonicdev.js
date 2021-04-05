@@ -8,8 +8,6 @@ module.exports = {
     await db.sequelize.sync({force: true});
     console.log('All models synced');
 
-    
-    
 
     //CITY SEED
     await queryInterface.bulkDelete('cities', null, {truncate: true, cascade: true, restartIdentity: true});    
@@ -148,14 +146,14 @@ module.exports = {
 
     console.log(bulkGenres);
 
+      //USER SEED
+      await queryInterface.bulkDelete('users', null, {truncate: true, cascade: true, restartIdentity: true});    
 
-    //PROFILE SEED
-    await queryInterface.bulkDelete('profiles', null, {truncate: true, cascade: true, restartIdentity: true});    
-
-    const bulkProfiles = await queryInterface.bulkInsert('profiles', [
-      { 
-        cityId: 1,
+      const bulkUsers = await queryInterface.bulkInsert('users', [
+        { email: "sk@test.com",
         name: "Steven Kaiser",
+        password: bcrypt.hashSync('harmonic!', 12),        
+        cityId: 1,
         isBand: false,
         profilePhotoUrl: "https://i.imgur.com/p0xHO7h.jpg",
         influences: ["The Smashing Pumpkins", "David Bowie", "Fiona Apple"],
@@ -169,10 +167,11 @@ module.exports = {
         lastActive: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      { 
-        cityId: 2,
+        },
+        { email: "jc@test.com",
         name: "Jimmy Chamberlin",
+        password: bcrypt.hashSync('harmonic!', 12),
+        cityId: 2,
         isBand: false,
         profilePhotoUrl: "https://i.imgur.com/0AOLXon.jpg",
         influences: ["Tony Williams", "John Bonham"],
@@ -186,10 +185,11 @@ module.exports = {
         lastActive: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      { 
-        cityId: 3,
+        },
+        { email: "gsybe@test.com",
         name: "Godspeed You! Black Emperor",
+        password: bcrypt.hashSync('harmonic!', 12),
+        cityId: 3,
         isBand: true,
         profilePhotoUrl: "https://i.imgur.com/Phuql7L.jpg",
         influences: ["Anarchy", "Slint", "King Crimson"],
@@ -202,59 +202,57 @@ module.exports = {
         lastActive: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-    
-    ], { returning: true });
-    
-    console.log(bulkProfiles);
-
-
+        },
+        ], { returning: true });
+  
+      console.log(bulkUsers);
+ 
     //profilesInstruments SEED
-    await queryInterface.bulkDelete('profilesInstruments', null, {truncate: true, cascade: true, restartIdentity: true});    
+    await queryInterface.bulkDelete('usersInstruments', null, {truncate: true, cascade: true, restartIdentity: true});    
 
-    const bulkProfilesInstruments = await queryInterface.bulkInsert('profilesInstruments', [
-      { profileId: 1,
+    const bulkUsersInstruments = await queryInterface.bulkInsert('usersInstruments', [
+      { userId: 1,
         instrumentId: 6,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 1,
+      { userId: 1,
         instrumentId: 10,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 2,
+      { userId: 2,
         instrumentId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 3,
+      { userId: 3,
         instrumentId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 3,
+      { userId: 3,
         instrumentId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 3,
+      { userId: 3,
         instrumentId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 3,
+      { userId: 3,
         instrumentId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 3,
+      { userId: 3,
         instrumentId: 6,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       
-      { profileId: 3,
+      { userId: 3,
         instrumentId: 9,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -262,74 +260,49 @@ module.exports = {
       
       ], { returning: true });
 
-    console.log(bulkProfilesInstruments);
+    console.log(bulkUsersInstruments);
 
     //profilesGenres SEED
-    await queryInterface.bulkDelete('profilesGenres', null, {truncate: true, cascade: true, restartIdentity: true});    
+    await queryInterface.bulkDelete('usersGenres', null, {truncate: true, cascade: true, restartIdentity: true});    
 
-    const bulkProfilesGenres = await queryInterface.bulkInsert('profilesGenres', [
-      { profileId: 1,
+    const bulkUsersGenres = await queryInterface.bulkInsert('usersGenres', [
+      { userId: 1,
         genreId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 1,
+      { userId: 1,
         genreId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 2,
+      { userId: 2,
         genreId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 2,
+      { userId: 2,
         genreId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },   
-      { profileId: 3,
+      { userId: 3,
         genreId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      { profileId: 3,
+      { userId: 3,
         genreId: 11,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       ], { returning: true });
 
-    console.log(bulkProfilesGenres);
+    console.log(bulkUsersGenres);
 
-    //USER SEED
-    await queryInterface.bulkDelete('users', null, {truncate: true, cascade: true, restartIdentity: true});    
-
-    const bulkUsers = await queryInterface.bulkInsert('users', [
-      { email: "sk@test.com",
-      password: bcrypt.hashSync('harmonic!', 12),
-      profileId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
-      },
-      { email: "jc@test.com",
-      password: bcrypt.hashSync('harmonic!', 12),
-      profileId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
-      },
-      { email: "gsybe@test.com",
-      password: bcrypt.hashSync('harmonic!', 12),
-      profileId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
-      },
-      ], { returning: true });
-
-    console.log(bulkUsers);
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('authors', null, {})
+    return queryInterface.bulkDelete('users', null, {})
   }
 }

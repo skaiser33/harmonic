@@ -12,7 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      
+      models.user.belongsTo(models.city)
+      models.user.hasMany(models.testimonial)
+      models.user.hasMany(models.message)
+      models.user.belongsToMany(models.instrument, {through: "usersInstruments"})
+      models.user.belongsToMany(models.genre, {through: "usersGenres"})
+      models.user.belongsToMany(models.collaboration, {through: "usersCollaborations"})
     }
     // Compares entered password to hashed password and returns boolean
     validPassword(passwordTyped) {
@@ -52,7 +57,18 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    profileId: DataTypes.INTEGER,
+    cityId: DataTypes.INTEGER,
+    isBand: DataTypes.BOOLEAN,
+    profilePhotoUrl: DataTypes.STRING,
+    influences: DataTypes.ARRAY(DataTypes.TEXT),
+    recordingCredits: DataTypes.ARRAY(DataTypes.TEXT),
+    canRecordRemotely: DataTypes.BOOLEAN,
+    spotifyEmbedUrl: DataTypes.STRING,
+    soundcloudEmbedUrl: DataTypes.STRING,
+    youtubeEmbedUrl: DataTypes.STRING,
+    localDraw: DataTypes.INTEGER,
+    nationalDraw: DataTypes.INTEGER,
+    lastActive: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'user',

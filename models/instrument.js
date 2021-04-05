@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.instrument.belongsToMany(models.profile, {through: "profilesInstruments"})
+      models.instrument.belongsToMany(models.user, {through: "usersInstruments"})
     }
   };
   instrument.init({
