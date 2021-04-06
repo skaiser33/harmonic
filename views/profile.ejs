@@ -1,23 +1,23 @@
 <div class="container">
-<h2><%= currentUser.name  %></h2>
-<img class="rounded-circle profile-photo-main" src="<%= currentUser.profilePhotoUrl %>" alt="profile image">
-<p>Joined Harmonic on <%= currentUser.createdAt %> </p>
-<p>Last Active on <%= currentUser.lastActive %> </p>
-<!-- if (currentUser.id === req.user.id) -->
+<h2><%= user.name  %></h2>
+<img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image">
+<p>Joined Harmonic on <%= user.createdAt %> </p>
+<p>Last Active on <%= user.lastActive %> </p>
+<!-- if (user.id === req.user.id) -->
   <!-- add edit functionality -->
 <!-- else  -->
   <!-- add star, message, and testimonial functionality -->
 
 <ul class="profile-list">
-<li>Location: <%= currentUser.cityId  %></li>,
+<li>Location: <%= user.city.name  %></li>,
 
   <!-- INSTRUMENTS & GENRES -->
     
-    <li>Influences: <%= currentUser.influences.join(", ") %> </li>
-    <% if (currentUser.recordingCredits) { %>
+    <li>Influences: <%= user.influences.join(", ") %> </li>
+    <% if (user.recordingCredits) { %>
       <li>Recording Credits:</li> 
         <ul>
-        <% currentUser.recordingCredits.forEach(function(credit) { %>
+        <% user.recordingCredits.forEach(function(credit) { %>
           <li><%= `${credit}`  %></li>
         <% }) %> 
         </ul>
@@ -25,34 +25,34 @@
 
 
 
-    <% if (currentUser.canRecordRemotely) { %>
+    <% if (user.canRecordRemotely) { %>
       <li>Remote recording capabilities</li>
     <% } else {} %> 
-    <% if (currentUser.spotifyEmbedUrl || currentUser.soundcloudEmbedUrl) { %>
+    <% if (user.spotifyEmbedUrl || user.soundcloudEmbedUrl) { %>
       <li>HEAR:</li>
     <% } else {} %>   
-      <% if (currentUser.spotifyEmbedUrl) { %>
+      <% if (user.spotifyEmbedUrl) { %>
         <li>
-          <iframe src="<%= currentUser.spotifyEmbedUrl %>" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src="<%= user.spotifyEmbedUrl %>" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </li>
       <% } else {} %> 
-      <% if (currentUser.soundcloudEmbedUrl) { %>
+      <% if (user.soundcloudEmbedUrl) { %>
         <li>
           <iframe width="400" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/400318689&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a>  <a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a></div>
         </li>
       <% } else {} %> 
-      <% if (currentUser.youtubeEmbedUrl) { %>  
+      <% if (user.youtubeEmbedUrl) { %>  
         <li>WATCH:</li>
-        <iframe width="560" height="315" src="<%= currentUser.youtubeEmbedUrl %> " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="<%= user.youtubeEmbedUrl %> " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <br>
       <% } else {} %> 
-      <% if (currentUser.localDraw && currentUser.nationalDraw) { %> 
-          <li>Draw: <%= currentUser.localDraw %> (local) / <%= currentUser.nationalDraw %> (national)</li>  
+      <% if (user.localDraw && user.nationalDraw) { %> 
+          <li>Draw: <%= user.localDraw %> (local) / <%= user.nationalDraw %> (national)</li>  
         
       <% } else { %> 
       <% } %>   
   </ul>
 </div>
 
-<!-- if currentUser.isBand -->
+<!-- if user.isBand -->
   <!-- special formatting and data display? -->
