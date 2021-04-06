@@ -1,0 +1,84 @@
+<h1>PROFILE SETUP</h1>
+
+<form action="/new/<%= user.id %>  " method="POST">
+  <div class="form-group">
+      <!-- TODO: convert to radio button, rephrase as "What kind of account are you creating?"  -->
+      <!-- REQUIRED -->
+    <label for="isBand">Are you creating a band account?</label>
+    <input id="isBand" type="text" name="isBand">
+  </div>  
+  <div class="form-group">
+    <!-- REQUIRED -->
+    <label for="new-name">Name</label>
+    <input id="new-name" type="text" name="name">
+  </div>
+  <!-- TODO: choose existing or add new from dropdown  -->
+  <!-- REQUIRED -->
+  <div class="form-group">
+    <label for="city">City</label>
+    <input id="city" type="text" name="city">
+  </div>
+    
+    <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
+    <!-- TODO: convert instr/genre to checklists -->
+    <!-- REQUIRED -->
+  <div class="form-group">
+    <label for="instruments">Instruments You Play (select all that apply)</label>
+    <input id="instruments" type="text" name="instruments">
+  </div>
+
+  <div class="form-group">
+    <label for="genres">Genre(s) (select all that apply)</label>
+    <input id="genres" type="text" name="genres">
+  </div>  
+    
+  <div class="form-group">
+    <label for="influences">Influences (separate by comma)</label>
+    <input id="influences" type="text" name="influences">
+  </div>
+
+    <!-- TODO: create special sub-form to help with format? -->
+  <div class="form-group">
+    <label for="recordingCredits">Recording Credits (separate by comma)</label>
+    <input id="recordingCredits" type="text" name="recordingCredits">
+  </div>
+
+    <!-- TODO: convert to radio button -->
+  <div class="form-group">
+    <label for="canRecordRemotely">Can you record remotely?</label>
+    <input id="canRecordRemotely" type="text" name="canRecordRemotely">
+  </div>
+
+  <div class="form-group">
+    <p>Show Your Skills With Audio and Video Samples</p>
+    <label for="spotifyEmbedUrl">Spotify Playlist or Track URL</label>
+    <input id="spotifyEmbedUrl" type="text" name="spotifyEmbedUrl">
+  </div>
+
+  <div class="form-group">
+    <label for="soundcloudEmbedUrl">Soundcloud Playlist or Track URL</label>
+    <input id="soundcloudEmbedUrl" type="text" name="soundcloudEmbedUrl">
+  </div>
+
+  <div class="form-group">
+    <label for="youtubeEmbedUrl">Youtube Video URL</label>
+    <input id="youtubeEmbedUrl" type="text" name="youtubeEmbedUrl">
+  </div>  
+    <!-- IF BAND RADIO BUTTON IS SELECTED / isBand = true -->
+    <!-- validate as integer between 1 and 200000 -->
+    
+  <div class="form-group">
+    <label for="localDraw">How many people do you draw (on average) at local shows?</label>
+    <input id="localDraw" type="text" name="localDraw">
+  </div>
+
+  <div class="form-group">
+    <label for="youtubeEmbedUrl">How many people do you draw (on average) at shows on a national tour?</label>
+    <input id="youtubeEmbedUrl" type="text" name="youtubeEmbedUrl">
+  </div>
+    
+    <input type="submit" class="btn btn-primary" value="Create Profile">
+  </div>
+</form>
+
+<!-- add profile photo here or wait to do that later? -->

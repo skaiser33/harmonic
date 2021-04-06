@@ -9,10 +9,25 @@
   <!-- add star, message, and testimonial functionality -->
 
 <ul class="profile-list">
-<li>Location: <%= user.city.name  %></li>,
+<li>Location: <%= user.city.name  %></li>
 
-  <!-- INSTRUMENTS & GENRES -->
-    
+  <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
+  <li>Instrument(s):</li> 
+        <ul>
+        <% user.instruments.forEach(function(instrument) { %>
+          <li><%= `${instrument.name}`  %></li>
+        <% }) %> 
+        </ul>
+
+        <% if (user.genres) { %>
+          <li>Genres:</li> 
+            <ul>
+            <% user.genres.forEach(function(genre) { %>
+              <li><%= `${genre.name}`  %></li>
+            <% }) %> 
+            </ul>
+        <% } else {} %>  
+
     <li>Influences: <%= user.influences.join(", ") %> </li>
     <% if (user.recordingCredits) { %>
       <li>Recording Credits:</li> 
@@ -53,6 +68,3 @@
       <% } %>   
   </ul>
 </div>
-
-<!-- if user.isBand -->
-  <!-- special formatting and data display? -->
