@@ -1,84 +1,155 @@
-<h1>PROFILE SETUP</h1>
 
+<div class="container">
+  <h1>PROFILE SETUP</h1>
 <form action="/new/<%= user.id %>  " method="POST">
-  <div class="form-group">
-      <!-- TODO: convert to radio button, rephrase as "What kind of account are you creating?"  -->
+
+      
       <!-- REQUIRED -->
-    <label for="isBand">Are you creating a band account?</label>
-    <input id="isBand" type="text" name="isBand">
-  </div>  
+
+  <p>Are you creating an account for a(n)...?</p>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="isBand1" name="isBand1" class="custom-control-input">
+    <label class="custom-control-label" for="isBand1">Individual Musician</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="isBand2" name="isBand2" class="custom-control-input">
+    <label class="custom-control-label" for="isBand2">Band</label>
+  </div>
+
   <div class="form-group">
     <!-- REQUIRED -->
     <label for="new-name">Name</label>
-    <input id="new-name" type="text" name="name">
+    <input id="new-name" class="form-control" type="text" name="name">
+    <small id="nameHelpBlock" class="form-text text-muted">
+      Required.
+    </small>
   </div>
   <!-- TODO: choose existing or add new from dropdown  -->
   <!-- REQUIRED -->
   <div class="form-group">
     <label for="city">City</label>
-    <input id="city" type="text" name="city">
+    <select class="form-control" id="city" name="city">
+      <!-- TODO: Populate with cities and have "Other" to add to db -->
+      <option>New York</option>
+      <option>Chicago</option>
+      <option>Los Angeles</option>
+      <option>Montreal</option>
+      <option>Other</option>
+    </select>
+    <small id="cityHelpBlock" class="form-text text-muted">
+      Required.
+    </small>
   </div>
-    
-    <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
-    <!-- TODO: convert instr/genre to checklists -->
-    <!-- REQUIRED -->
+  
+  <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
+  <!-- TODO: Populate with instruments and have "Other" to add to db -->
   <div class="form-group">
-    <label for="instruments">Instruments You Play (select all that apply)</label>
-    <input id="instruments" type="text" name="instruments">
+    <p> Instruments You Play</p>
+    <small id="instrumentsHelpBlock" class="form-text text-muted">
+      Required. Select all that apply.
+    </small>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+      <label class="form-check-label" for="inlineCheckbox1">Drums</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+      <label class="form-check-label" for="inlineCheckbox2">Bass</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <label class="form-check-label" for="inlineCheckbox3">Other</label>
+      <input id="instruments" type="text" name="instruments">
+    </div>    
   </div>
-
+  
+  <!-- TODO: Populate with genres and have "Other" to add to db -->
   <div class="form-group">
-    <label for="genres">Genre(s) (select all that apply)</label>
-    <input id="genres" type="text" name="genres">
+    <p>Genre(s)</p>    
+    <small id="genresHelpBlock" class="form-text text-muted">
+      Select all that apply.
+    </small>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+      <label class="form-check-label" for="inlineCheckbox1">Alternative</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+      <label class="form-check-label" for="inlineCheckbox2">Funk</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <label class="form-check-label" for="inlineCheckbox3">Other</label>
+      <input id="genres" type="text" name="genres">
   </div>  
     
   <div class="form-group">
-    <label for="influences">Influences (separate by comma)</label>
-    <input id="influences" type="text" name="influences">
+    <label for="influences">Influences</label>
+    <textarea class="form-control" id="influences" name="influences" rows="3"></textarea>
+    <small id="genresHelpBlock" class="form-text text-muted">
+      Add up to five influences, separated by commas.
+    </small>
   </div>
 
     <!-- TODO: create special sub-form to help with format? -->
   <div class="form-group">
-    <label for="recordingCredits">Recording Credits (separate by comma)</label>
-    <input id="recordingCredits" type="text" name="recordingCredits">
+    <label for="recordingCredits">Recording Credits</label>
+    <textarea class="form-control" id="recordingCredits" name="recordingCredits" rows="3"></textarea>
+    <small id="genresHelpBlock" class="form-text text-muted">
+      Add up to five recording credits, separated by commas.
+    </small>
   </div>
 
     <!-- TODO: convert to radio button -->
   <div class="form-group">
-    <label for="canRecordRemotely">Can you record remotely?</label>
-    <input id="canRecordRemotely" type="text" name="canRecordRemotely">
+   
+  
+    <p>Can you record remotely?</p>
+    <div class="custom-control custom-radio custom-control-inline">
+      <input type="radio" id="canRecordRemotely1" name="canRecordRemotely1" class="custom-control-input">
+      <label class="custom-control-label" for="canRecordRemotely1">Yes</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+      <input type="radio" id="canRecordRemotely2" name="canRecordRemotely2" class="custom-control-input">
+      <label class="custom-control-label" for="canRecordRemotely2">No</label>
+    </div>
   </div>
-
   <div class="form-group">
     <p>Show Your Skills With Audio and Video Samples</p>
     <label for="spotifyEmbedUrl">Spotify Playlist or Track URL</label>
-    <input id="spotifyEmbedUrl" type="text" name="spotifyEmbedUrl">
+    <input id="spotifyEmbedUrl" class="form-control" type="text" name="spotifyEmbedUrl">
   </div>
 
   <div class="form-group">
     <label for="soundcloudEmbedUrl">Soundcloud Playlist or Track URL</label>
-    <input id="soundcloudEmbedUrl" type="text" name="soundcloudEmbedUrl">
+    <input id="soundcloudEmbedUrl" class="form-control" type="text" name="soundcloudEmbedUrl">
   </div>
 
   <div class="form-group">
     <label for="youtubeEmbedUrl">Youtube Video URL</label>
-    <input id="youtubeEmbedUrl" type="text" name="youtubeEmbedUrl">
+    <input id="youtubeEmbedUrl" class="form-control" type="text" name="youtubeEmbedUrl">
   </div>  
     <!-- IF BAND RADIO BUTTON IS SELECTED / isBand = true -->
     <!-- validate as integer between 1 and 200000 -->
     
   <div class="form-group">
-    <label for="localDraw">How many people do you draw (on average) at local shows?</label>
-    <input id="localDraw" type="text" name="localDraw">
-  </div>
+    <p>How many people do you draw on average at a...?</p>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Local Show</label>
+        <input type="text" class="form-control" id="localDraw" name="localDraw" placeholder="Local Draw (number)">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">National Show</label>
+        <input type="text" class="form-control" id="nationalDraw" name="nationalDraw" placeholder="National Draw (number)">
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="youtubeEmbedUrl">How many people do you draw (on average) at shows on a national tour?</label>
-    <input id="youtubeEmbedUrl" type="text" name="youtubeEmbedUrl">
-  </div>
     
     <input type="submit" class="btn btn-primary" value="Create Profile">
   </div>
 </form>
-
+</div>
 <!-- add profile photo here or wait to do that later? -->
+
+<!-- TODO: Form validation (required fields, input type) -->

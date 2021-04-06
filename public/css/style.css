@@ -15,7 +15,6 @@ body {
   min-height: 100vh;
   flex-direction: column;
   font-family: var(--main-font);
-  /* font-family: 'Bungee Inline', cursive; */
   color: var(--red);
   background-color: black;
   background: url(/assets/desktopbg.jpg) no-repeat center center fixed;
@@ -52,6 +51,22 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   color: red;
   font-size: 3em;
 }
+
+form {
+  font-size: 1.5em;
+  background-color:  rgb(177, 0, 0, .6);
+  color: white;
+  padding: 30px;
+}
+
+.form-control {
+  width: 50%;
+}
+
+.text-muted{
+  color: rgb(209, 205, 205) !important;
+}
+
 /* 
 
 h1 {
