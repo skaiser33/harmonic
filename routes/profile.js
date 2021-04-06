@@ -4,11 +4,21 @@ const db = require('../models');
 
 //get new profile form
 router.get('/new/:id', (req, res) => {
-    res.render('profile/new', {user: req.user})
-})
+  db.instrument.findAll()
+  .then((instruments) => {
+    db.genre.findAll()
+    .then((genres) => {
+      db.city.findAll()
+      .then((cities) => {
+      res.render('profile/new', {user: req.user, instruments: instruments, genres: genres, cities: cities})
+    })
+    })
+    })
+    })
 
 //post new profile form
 router.post('/new/:id', (req, res) => {
+
   db.user.update({
   }, {
     where: { id: req.body.id }

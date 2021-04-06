@@ -17,23 +17,21 @@
   </div>
 
   <div class="form-group">
-    <!-- REQUIRED -->
     <label for="new-name">Name</label>
     <input id="new-name" class="form-control" type="text" name="name">
     <small id="nameHelpBlock" class="form-text text-muted">
       Required.
     </small>
   </div>
-  <!-- TODO: choose existing or add new from dropdown  -->
-  <!-- REQUIRED -->
+
+  <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
     <label for="city">City</label>
     <select class="form-control" id="city" name="city">
-      <!-- TODO: Populate with cities and have "Other" to add to db -->
-      <option>New York</option>
-      <option>Chicago</option>
-      <option>Los Angeles</option>
-      <option>Montreal</option>
+      
+      <% cities.forEach(function(city) { %>
+      <option> <%=city.name %></option>
+      <% }) %> 
       <option>Other</option>
     </select>
     <small id="cityHelpBlock" class="form-text text-muted">
@@ -42,20 +40,18 @@
   </div>
   
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
-  <!-- TODO: Populate with instruments and have "Other" to add to db -->
+  <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
     <p> Instruments You Play</p>
     <small id="instrumentsHelpBlock" class="form-text text-muted">
       Required. Select all that apply.
     </small>
+    <% instruments.forEach(function(instrument) { %>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-      <label class="form-check-label" for="inlineCheckbox1">Drums</label>
+      <input class="form-check-input" type="checkbox" id="<%= instrument.name %>" value="<%= instrument.name %>">
+      <label class="form-check-label" for="<%= instrument.name %>"><%= instrument.name %> </label>
     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-      <label class="form-check-label" for="inlineCheckbox2">Bass</label>
-    </div>
+    <% }) %> 
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
       <label class="form-check-label" for="inlineCheckbox3">Other</label>
@@ -63,25 +59,23 @@
     </div>    
   </div>
   
-  <!-- TODO: Populate with genres and have "Other" to add to db -->
+  <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
     <p>Genre(s)</p>    
     <small id="genresHelpBlock" class="form-text text-muted">
       Select all that apply.
     </small>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-      <label class="form-check-label" for="inlineCheckbox1">Alternative</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-      <label class="form-check-label" for="inlineCheckbox2">Funk</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-      <label class="form-check-label" for="inlineCheckbox3">Other</label>
-      <input id="genres" type="text" name="genres">
-  </div>  
+    <% genres.forEach(function(genre) { %>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="<%= genre.name %>" value="<%= genre.name %>">
+        <label class="form-check-label" for="<%= genre.name %>"><%= genre.name %> </label>
+      </div>
+    <% }) %> 
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+        <label class="form-check-label" for="inlineCheckbox3">Other</label>
+        <input id="genres" type="text" name="genres">
+      </div>  
     
   <div class="form-group">
     <label for="influences">Influences</label>
@@ -100,10 +94,8 @@
     </small>
   </div>
 
-    <!-- TODO: convert to radio button -->
+
   <div class="form-group">
-   
-  
     <p>Can you record remotely?</p>
     <div class="custom-control custom-radio custom-control-inline">
       <input type="radio" id="canRecordRemotely1" name="canRecordRemotely1" class="custom-control-input">
