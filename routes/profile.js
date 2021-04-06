@@ -33,7 +33,7 @@ router.post('/new/:id', (req, res) => {
     youtubeEmbedUrl: req.body.youtubeEmbedUrl,
     localDraw: req.body.localDraw,
     nationalDraw: req.body.nationalDraw,
-    //TODO: associate city, instruments, genres
+    //TODO: associate city, instruments, genres, collaboration
   }, {
     where: { id: req.params.id }
     // [note: the ‘user’ argument does not return the user data, just the number of rows updated]
@@ -51,8 +51,8 @@ router.post('/new/:id', (req, res) => {
 //get new profile form
 router.get('/:id', (req, res) => {
   db.user.findOne({    
-    where: {id: req.user.id},
-    include: [db.city, db.instrument, db.genre]
+    where: {id: req.params.id},
+    include: [db.city, db.instrument, db.genre, db.collaboration]
   }).then((user) => {
     // console.log(user.instruments[0].name);
     res.render('profile/profile', {user: user})

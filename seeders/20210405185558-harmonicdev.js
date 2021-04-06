@@ -30,6 +30,35 @@ module.exports = {
     console.log(bulkCities);
 
 
+    //COLLABORATION SEED
+    await queryInterface.bulkDelete('collaborations', null, {truncate: true, cascade: true, restartIdentity: true});    
+
+    const bulkCollaborations = await queryInterface.bulkInsert('collaborations', [
+      { type: "Shows",
+      createdAt: new Date(),
+      updatedAt: new Date()
+      },
+      { type: "Tours",
+      createdAt: new Date(),
+      updatedAt: new Date()
+      },
+      { type: "Recording Sessions",
+      createdAt: new Date(),
+      updatedAt: new Date()
+      },
+      { type: "Co-writes",
+      createdAt: new Date(),
+      updatedAt: new Date()
+      },
+      { type: "Extended Collaborations",
+      createdAt: new Date(),
+      updatedAt: new Date()
+      }
+      ], { returning: true });
+
+    console.log(bulkCollaborations);
+
+
     //INSTRUMENT SEED
     await queryInterface.bulkDelete('instruments', null, {truncate: true, cascade: true, restartIdentity: true});    
 
@@ -207,7 +236,47 @@ module.exports = {
   
       console.log(bulkUsers);
  
-    //profilesInstruments SEED
+
+    //usersCollaborations SEED
+    await queryInterface.bulkDelete('usersCollaborations', null, {truncate: true, cascade: true, restartIdentity: true});    
+
+    const bulkUsersCollaborations = await queryInterface.bulkInsert('usersCollaborations', [
+      { userId: 1,
+        collaborationId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      { userId: 1,
+        collaborationId: 5,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      { userId: 2,
+        collaborationId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      { userId: 2,
+        collaborationId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      { userId: 3,
+        collaborationId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      { userId: 3,
+        collaborationId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+      ], { returning: true });
+
+    console.log(bulkUsersCollaborations);
+
+
+    //usersInstruments SEED
     await queryInterface.bulkDelete('usersInstruments', null, {truncate: true, cascade: true, restartIdentity: true});    
 
     const bulkUsersInstruments = await queryInterface.bulkInsert('usersInstruments', [
@@ -262,7 +331,7 @@ module.exports = {
 
     console.log(bulkUsersInstruments);
 
-    //profilesGenres SEED
+    //usersGenres SEED
     await queryInterface.bulkDelete('usersGenres', null, {truncate: true, cascade: true, restartIdentity: true});    
 
     const bulkUsersGenres = await queryInterface.bulkInsert('usersGenres', [

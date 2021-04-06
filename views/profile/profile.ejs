@@ -1,6 +1,8 @@
 <div class="container">
+  <div class="row">
 <h2><%= user.name  %></h2>
-<img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image">
+<img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image" width=200 height=200>
+</div>
 <p>Joined Harmonic on <%= user.createdAt %> </p>
 <p>Last Active on <%= user.lastActive %> </p>
 <!-- if (user.id === req.user.id) -->
@@ -16,6 +18,22 @@
         <ul>
         <% user.instruments.forEach(function(instrument) { %>
           <li><%= `${instrument.name}`  %></li>
+        <% }) %> 
+        </ul>
+
+        <% if (user.genres) { %>
+          <li>Genres:</li> 
+            <ul>
+            <% user.genres.forEach(function(genre) { %>
+              <li><%= `${genre.name}`  %></li>
+            <% }) %> 
+            </ul>
+        <% } else {} %>  
+  <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
+  <li>Available For:</li> 
+        <ul>
+        <% user.collaborations.forEach(function(collaboration) { %>
+          <li><%= `${collaboration.type}`  %></li>
         <% }) %> 
         </ul>
 
