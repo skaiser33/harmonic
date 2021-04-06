@@ -9,25 +9,3 @@ SOUNDCLOUD
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pKTOh2DZMOI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
-
-        
-   
-
-  <% if (currentUser.youtubeEmbedUrl) { %>  
-    <li>WATCH:</li>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/pKTOh2DZMOI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <% } else {} %> 
-
-
-    <!-- lastActive: '2021-04-05',
-    createdAt: 2021-04-05T19:42:02.043Z,
-    INSTRUMENTS/GENRES -->
-
-
-  <% if (currentUser.isBand) {%> 
-  <!-- localDraw: null,
-  nationalDraw: null, -->
-
-  <% } else { %> 
-  <% } %> 

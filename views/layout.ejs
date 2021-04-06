@@ -49,8 +49,9 @@
                       <img src="<%= currentUser.profilePhotoUrl %> " width=80 height=80 class="rounded-circle profile-photo-small">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="/profile">My Profile</a>
-                      <a class="dropdown-item" href="/profile">My Messages</a>
+                      <!-- <a class="dropdown-item" href="/profile/">My Profile</a> -->
+                      <a class="dropdown-item" href="/profile/<%= currentUser.id %>">My Profile</a>
+                      <a class="dropdown-item" href="/profile/">My Messages</a>
                       <a class="dropdown-item" href="#">My Stars</a>
                       <a class="dropdown-item" href="#">My Saved Searches</a>
                       <a class="dropdown-item" href="/auth/logout">Logout</a>
