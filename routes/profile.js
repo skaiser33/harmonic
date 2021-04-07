@@ -40,8 +40,15 @@ router.post('/new/:id', (req, res) => {
   }, {
     where: { id: req.params.id }
     // [note: the ‘user’ argument does not return the user data, just the number of rows updated]
+  }).then(function(updated) {
+    db.city.findOne({
+      where: {name: req.body.city}
+  }).then(function(city) {
+    db.user.findOne({
+      where: { id: req.params.id }
   }).then(function(user) {
-    console.log("********", user, "********");
+    city.addUser(user)
+    // console.log("********", user.cityId, "********");
     res.redirect('/');
   }).catch(error => {
     // FLASH
@@ -49,6 +56,8 @@ router.post('/new/:id', (req, res) => {
     res.redirect(`/profile/new/${req.params.id}`);
     // res.redirect(`/profile/new/${user.id}`);
   });
+});
+});
 });
 
 //get profile by user id
