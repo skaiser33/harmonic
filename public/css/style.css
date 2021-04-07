@@ -8,6 +8,7 @@ ANYTHING?  font-family: 'New Tegomin', serif;*/
   --red: rgb(177, 0, 0);
   --title-font: 'Bungee Inline', cursive;
   --main-font: 'Darker Grotesque', sans-serif;
+  --alt-font: 'Rajdhani', sans-serif; 
 }
 
 body {
@@ -121,7 +122,7 @@ input {
 }
 
 .btn {
-  font-family: 'Syne Mono', monospace;
+  font-family: var(--alt-font);
   display:inline-block;
   margin:10px;
 }
