@@ -27,35 +27,31 @@ router.get('/new/:id', (req, res) => {
 router.post('/new/:id', async (req, res) => {
   try {
 
-    // req.body.instrumentCheck.forEach(function(instrument) {
-    //   console.log("*********", instrument, "*********",);
-    // })
-
-    
-    // let checkedInstruments = []
-    //create array of checked instruments
-    //create array of checked collaborations
-    //create array of checked genres
-
-    //checkedInstruments.forEach(function(instrument) {
-      //db.instrument.findOne({
-        // where: {name: instrument}
-        // }).then(function(foundInstrument) 
-        // foundUser.addInstrument(foundInstrument)
     let checkedInstruments = []
+    let checkedCollaborations = []
+    let checkedGenres = []
+    // let influenceList
+    // let creditsList
+
+    // if (req.body.influences) {
+    //   influenceList = req.body.influences 
+    // }
+
+    // if (req.body.recordingCredits) {
+    //   creditsList = req.body.recordingCredits 
+    // }
 
     const updatedUser = await db.user.update({
       isBand: false, //TODO value from radio form?
       name: req.body.name,       
       influences: [req.body.influences],
-      recordingCredits: [req.body.recordingCredits],
+      // recordingCredits: [req.body.recordingCredits],
       canRecordRemotely: false, //TODO value from radio form?
       spotifyEmbedUrl: req.body.spotifyEmbedUrl,
       soundcloudEmbedUrl: req.body.soundcloudEmbedUrl,
       youtubeEmbedUrl: req.body.youtubeEmbedUrl,
       localDraw: req.body.localDraw,
       nationalDraw: req.body.nationalDraw,
-      //TODO: associate instruments, genres, collaboration
       //TODO value from radio form?
     }, {
       where: { id: req.params.id }
@@ -70,8 +66,8 @@ router.post('/new/:id', async (req, res) => {
       where: { id: req.params.id }
     })
     
-
-    //attempt with for of 
+    //CAN I REFACTOR THE FOLLOWING AS ONE FUNCTION and SUB IN?
+    // adds each checked instrument from form to checkedInstruments array
     for (const instrument of req.body.instrumentCheck) {
       const checkedInstrument = await db.instrument.findOne({
         where: {name: instrument}
@@ -79,50 +75,30 @@ router.post('/new/:id', async (req, res) => {
       checkedInstruments.push(checkedInstrument)
     }
 
-    // req.body.instrumentCheck.forEach(async function(instrument) {
-    //   let checkedInstrument = await db.instrument.findOne({
-    //     where: {name: instrument}
-    //   })
-    //   console.log("*********", checkedInstrument, "*********",);
-    //   checkedInstruments.push("yo")
-    // })    
+    // adds each checked collaboration from form to checkedcollaborations array
+    for (const collaboration of req.body.collaborationCheck) {
+      const checkedCollaboration = await db.collaboration.findOne({
+        where: {type: collaboration}
+      })
+      checkedCollaborations.push(checkedCollaboration)
+    }
 
-    // attempt with forEach and async await
-    // req.body.instrumentCheck.forEach(async function(instrument) {
-    //   let checkedInstrument = await db.instrument.findOne({
-    //     where: {name: instrument}
-    //   })
-    //   console.log("*********", checkedInstrument, "*********",);
-    //   checkedInstruments.push("yo")
-    // // })    
+    // adds each checked collaboration from form to checkedcollaborations array
+    if (req.body.genreCheck) {
+      for (const genre of req.body.genreCheck) {
+        const checkedGenre = await db.genre.findOne({
+          where: {name: genre}
+        })
+        checkedGenres.push(checkedGenre)
+      }
+    }
     
-    //attempting with forEach and .then
-    // req.body.instrumentCheck.forEach(function(instrument) {
-    //   db.instrument.findOne({
-    //     where: {name: instrument}
-    //   }).then(function(checkedInstrument) {
-    //     checkedInstruments.push(checkedInstrument)
-    //   })
-    //   // console.log("*********", checkedInstrument, "*********",);
-    //   // checkedInstruments.push("yo")
-    // })    
-    
-    //attempt with map method
-    // await Promise.all(req.body.instrumentCheck.map(async function(instrument) {
-    //   let checkedInstruments = await db.instrument.findOne({
-    //     where: {name: instrument}
-    //   })
-    //   
-    // }))       
-    
-    
-    
-
-      // console.log("*********", instrument, "*********",);
-
+    console.log("*********", foundUser.influences, "*********",);
+    console.log("*********", foundUser.recordingCredits, "*********",);
     //accepts array as argument
-    console.log("*********", checkedInstruments, "*********",);
     foundUser.addInstruments(checkedInstruments)
+    foundUser.addCollaborations(checkedCollaborations)
+    foundUser.addGenres(checkedGenres)
     foundCity.addUser(foundUser)
     res.redirect('/')
 

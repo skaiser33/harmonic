@@ -21,14 +21,7 @@
         <% }) %> 
         </ul>
 
-        <% if (user.genres) { %>
-          <li>Genres:</li> 
-            <ul>
-            <% user.genres.forEach(function(genre) { %>
-              <li><%= `${genre.name}`  %></li>
-            <% }) %> 
-            </ul>
-        <% } else {} %>  
+
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
   <li>Available For:</li> 
         <ul>
@@ -37,7 +30,7 @@
         <% }) %> 
         </ul>
 
-        <% if (user.genres) { %>
+        <% if (user.genres && user.genres.length > 1) { %>
           <li>Genres:</li> 
             <ul>
             <% user.genres.forEach(function(genre) { %>
@@ -46,8 +39,12 @@
             </ul>
         <% } else {} %>  
 
+    <% if (user.influences && user.influences.length > 1) { %>    
     <li>Influences: <%= user.influences.join(", ") %> </li>
-    <% if (user.recordingCredits) { %>
+    <% } %> 
+    
+    
+    <% if (user.recordingCredits && user.recordingCredits.length > 1) { %>
       <li>Recording Credits:</li> 
         <ul>
         <% user.recordingCredits.forEach(function(credit) { %>
