@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const db = require('../models');
 
 router.get('/', (req, res) => {
@@ -25,23 +27,29 @@ router.get('/', (req, res) => {
 
 //get index of search results
 router.get('/index', (req, res) => {
+  console.log(req.query.instrumentCheck)
   db.user.findAll({    
-    // include: [db.city, db.instrument, db.collaboration, db.genre],
+    // include: [db.instrument, db.collaboration, db.genre],
+    //HOW DO I SEARCH THROUGH ARRAYS?
     include: [
+
       { model: db.instrument,
-        where: { name: "Drums" },
+        where: {
+          // [Op.and]: [{ name: "Drums" }, { name: "Cello" }]},
+            // name: {[Op.and]: ["Drums", "Cello"]}}
+          name: ["Drums", "Cello"] },
       },
-      { model: db.collaboration,
-        where: { type: "Shows" },
-      },
-      { model: db.genre,
-        where: { name: "Experimental" },
-      },
+      // { model: db.collaboration,
+      //   where: { type: "Shows" },
+      // },
+      // { model: db.genre,
+      //   where: { name: "Experimental" },
+      // },
     ],  
     where: {
-      isBand: false,
-      cityId: 1
-      //influences (%___%):
+      isBand: false, //req.query.isBand,
+      // cityId: req.query.city
+      //influences (%___%): split(",")
     },
     order: [['name', 'ASC']]
     // include: [db.city, db.instrument, db.genre, db.collaboration]
