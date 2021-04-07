@@ -28,6 +28,15 @@ img {
   max-width: 100%;
 }
 
+iframe, .profile-photo-main {
+  border: 3px solid var(--red);
+  border-radius: 2%;
+}
+
+.profile-photo-small {
+  border: 1px solid var(--red);
+}
+
 nav ul li {
   text-decoration: none;
   display: inline-block;
@@ -36,6 +45,7 @@ nav ul li {
 
 .navbar {
   border-bottom: 3px solid var(--red);
+  margin-bottom: 20px;
 } 
 
 /* ul {
@@ -47,8 +57,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .navbar-brand { 
-  color: var(--red);
-  color: red;
+  /* color: var(--red) !important; */
   font-size: 3em;
 }
 
@@ -67,38 +76,33 @@ form {
   color: rgb(209, 205, 205) !important;
 }
 
-/* 
+main {
+  flex: 1 0 auto;
+}
 
 h1 {
-  color: rgb(16, 100, 247);
+  /* color: rgb(16, 100, 247); */
   font-size: 5em;
   margin-top: 20px;
 } 
 
 h2 {
-  color: rgb(16, 100, 247);
   font-size: 4em;
 } 
 
-h5 {
-  font-size: 2em;
+/* h5 {
   white-space: pre;
-} 
+}  */
 
-main {
-  flex: 1 0 auto;
-}
 
-footer {
+/* footer {
   padding-top: 0;
   text-align: right;
-}
+} */
 
 p {
   font-size: 1.5em;
 }
-
-
 
 .nav-item, .navbar-nav {
   font-size: 1.3em;
@@ -125,6 +129,65 @@ input {
 .form-control-file {
   margin-left: 0;
 }
+
+
+
+.navbar-nav > li{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navbar-nav > form{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.card{
+  border: 5px solid var(--red);
+  margin-top: 2%;
+}
+
+.card-body {
+  background-color: black;
+  color: rgb(167, 4, 4, .4);
+}
+
+.search-title {
+  font-size: 40px;
+  color: white;
+  margin: 0px 10px 2px 20px;
+}
+
+.cities-anchor {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+.profile-info {
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(16, 100, 247);
+  font-style: italic;
+}
+
+.col-sm-7, .col-sm-5 {
+  background-color: rgb(16, 100, 247);
+}
+
+.bio {
+  font-size: 1em;
+}
+
+.home-card {
+  max-width: 70vw;
+}
+
+
+a:hover {
+  color:rgb(171, 218, 247);
+} /* */
+
 
 .btn-outline-success {
   
@@ -161,68 +224,6 @@ input {
   background-color: white;
   border:2px solid #dc3545;
 }
-
-.navbar-nav > li{
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.navbar-nav > form{
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.card{
-  border: 5px solid white;
-  margin-top: 2%;
-}
-
-.card-body {
-  background-color: rgb(16, 100, 247);
-  color: rgb(150,216,245);
-}
-
-.review-title {
-  font-size: 40px;
-  color: white;
-  margin: 0px 10px 2px 20px;
-}
-
-.cities-anchor {
-  font-size: 30px;
-  font-weight: bold;
-  color: white;
-}
-
-.profile-info {
-  font-size: 25px;
-  font-weight: bold;
-  color: rgb(16, 100, 247);
-  font-style: italic;
-}
-
-.col-sm-7, .col-sm-5 {
-  background-color: rgb(16, 100, 247);
-}
-
-.bio {
-  font-size: 1em;
-}
-
-.home-card {
-  max-width: 70vw;
-}
-
-.city-index {
-  
-}
-
-a:hover {
-  color:rgb(171, 218, 247);
-} */
-
-
-
 
 
 

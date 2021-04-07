@@ -1,0 +1,16 @@
+<h1>SEARCH RESULTS</h1>
+
+<!-- TODO add button to save search RESULTS
+TODO add button to go back to search -->
+
+<div class="container">
+  <% users.forEach(function(user) { %>
+    <div class="card">
+      <div class="card-body">
+        <img class="rounded-circle profile-photo-small align-middle" src="<%= user.profilePhotoUrl %>" width=80 height=80>
+        <a class="review-title align-middle" href="profile/<%= user.id %>"><%= user.name %></a>
+      </div>
+    </div>
+    <br>
+  <% }) %>   
+</div>  
