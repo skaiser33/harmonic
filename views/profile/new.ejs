@@ -1,15 +1,15 @@
 <div class="container">
-  <h1>PROFILE SETUP</h1>
+  <h1>SET UP YOUR PROFILE</h1>
   <form action="/profile/new/<%= user.id %>" method="POST">
 
-  <p>Are you creating an account for a(n)...?</p>
+  <h3>Are you creating an account for...?</h3>
   <div class="custom-control custom-radio custom-control-inline ">
     <input type="radio" id="isBand1" name="isBand1" class="custom-control-input" checked>
-    <label class="custom-control-label" for="isBand1">Individual Musician</label>
+    <label class="custom-control-label" for="isBand1">An Individual Musician</label>
   </div>
   <div class="custom-control custom-radio custom-control-inline">
     <input type="radio" id="isBand2" name="isBand2" class="custom-control-input">
-    <label class="custom-control-label" for="isBand2">Band</label>
+    <label class="custom-control-label" for="isBand2">A Band</label>
   </div>
 
   <div class="form-group">
@@ -49,9 +49,26 @@
     </div>
     <% }) %> 
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="other">
       <label class="form-check-label" for="inlineCheckbox3">Other</label>
       <input id="instruments" type="text" name="instruments">
+    </div>    
+  </div>
+
+  <!-- TODO: If "Other" selected, present text input and add value to db -->
+  <div class="form-group">
+    <p> What types of collaborations are you interested in?</p>
+    <small id="instrumentsHelpBlock" class="form-text text-muted">
+      Required. Select all that apply.
+    </small>
+    <% collaborations.forEach(function(collaboration) { %>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="<%= collaboration.type %>" value="<%= collaboration.type %>">
+      <label class="form-check-label" for="<%= collaboration.type %>"><%= collaboration.type %> </label>
+    </div>
+    <% }) %> 
+    <div class="form-check form-check-inline">
+      <input id="collaborations" type="text" name="collaborations">
     </div>    
   </div>
   
@@ -68,7 +85,7 @@
       </div>
     <% }) %> 
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="other">
         <label class="form-check-label" for="inlineCheckbox3">Other</label>
         <input id="genres" type="text" name="genres">
       </div>  
@@ -104,7 +121,7 @@ Close To The Edge - Yes - 1972 - Keyboards/Organ" name="recordingCredits" rows="
   </div>
 
   <div class="form-group">
-    <p>Show Your Skills With Audio and Video Samples</p>
+    <h3>Highlight Your Talent with Audio and Video Samples</h3>
     <label for="spotifyEmbedUrl">Spotify Playlist or Track URL</label>
     <input id="spotifyEmbedUrl" class="form-control" type="text" placeholder="ie: https://open.spotify.com/embed/track/46Dh8ZM4LxlOyzKypMx9kv" name="spotifyEmbedUrl">
   </div>

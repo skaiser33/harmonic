@@ -8,12 +8,15 @@ router.get('/new/:id', (req, res) => {
   .then((instruments) => {
     db.genre.findAll()
     .then((genres) => {
-      db.city.findAll()
-      .then((cities) => {
-        db.user.findOne({    
-          where: {id: req.user.id},         
-        }).then((user) => {
-        res.render('profile/new', {user: req.user, instruments: instruments, genres: genres, cities: cities})
+      db.collaboration.findAll()
+      .then((collaborations) => {
+        db.city.findAll()
+        .then((cities) => {
+          db.user.findOne({    
+            where: {id: req.user.id},         
+          }).then((user) => {
+          res.render('profile/new', {user: req.user, instruments: instruments, genres: genres, cities: cities, collaborations: collaborations})
+          })
         })
       })
     })
@@ -48,13 +51,13 @@ router.post('/new/:id', (req, res) => {
   });
 });
 
-//get new profile form
+//get profile by user id
 router.get('/:id', (req, res) => {
   db.user.findOne({    
     where: {id: req.params.id},
     include: [db.city, db.instrument, db.genre, db.collaboration]
   }).then((user) => {
-    // console.log(user.instruments[0].name);
+    console.log(user.collaborations);
     res.render('profile/profile', {user: user})
   })
 })

@@ -34,11 +34,11 @@ module.exports = {
     await queryInterface.bulkDelete('collaborations', null, {truncate: true, cascade: true, restartIdentity: true});    
 
     const bulkCollaborations = await queryInterface.bulkInsert('collaborations', [
-      { type: "Shows",
+      { type: "One-Off Shows",
       createdAt: new Date(),
       updatedAt: new Date()
       },
-      { type: "Tours",
+      { type: "Touring",
       createdAt: new Date(),
       updatedAt: new Date()
       },
