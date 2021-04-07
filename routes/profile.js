@@ -42,17 +42,16 @@ router.post('/new/:id', async (req, res) => {
     // }
 
     const updatedUser = await db.user.update({
-      isBand: false, //TODO value from radio form?
+      isBand: req.body.isBand,
       name: req.body.name,       
       influences: [req.body.influences],
-      // recordingCredits: [req.body.recordingCredits],
-      canRecordRemotely: false, //TODO value from radio form?
+      recordingCredits: [req.body.recordingCredits],
+      canRecordRemotely: req.body.canRecordRemotely, 
       spotifyEmbedUrl: req.body.spotifyEmbedUrl,
       soundcloudEmbedUrl: req.body.soundcloudEmbedUrl,
       youtubeEmbedUrl: req.body.youtubeEmbedUrl,
       localDraw: req.body.localDraw,
       nationalDraw: req.body.nationalDraw,
-      //TODO value from radio form?
     }, {
       where: { id: req.params.id }
       // [note: the ‘user’ argument does not return the user data, just the number of rows updated]
@@ -92,14 +91,14 @@ router.post('/new/:id', async (req, res) => {
         checkedGenres.push(checkedGenre)
       }
     }
-    
-    console.log("*********", foundUser.influences, "*********",);
-    console.log("*********", foundUser.recordingCredits, "*********",);
+
+    console.log("********", foundUser.isBand, foundUser.canRecordRemotely, "********")
+    foundCity.addUser(foundUser)
     //accepts array as argument
     foundUser.addInstruments(checkedInstruments)
     foundUser.addCollaborations(checkedCollaborations)
     foundUser.addGenres(checkedGenres)
-    foundCity.addUser(foundUser)
+    
     res.redirect('/')
 
   } catch (error) {
