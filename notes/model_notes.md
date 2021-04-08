@@ -26,6 +26,12 @@ sequelize model:create --name message --attributes senderId:integer,recipientId:
 //TESTIMONIAL
 sequelize model:create --name testimonial --attributes senderId:integer,recipientId:integer,content:text
 
+//FAVORITES
+sequelize model:create --name favorites --attributes senderId:integer,recipientId:integer
+
+//UNFAVORITES
+sequelize model:create --name unfavorites --attributes senderId:integer,recipientId:integer
+
 //JOIN TABLES
 sequelize model:create --name profilesInstruments --attributes profileId:integer,instrumentId:integer
 

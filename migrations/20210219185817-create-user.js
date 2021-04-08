@@ -29,9 +29,6 @@ module.exports = {
       recordingCredits: {
         type: Sequelize.ARRAY(Sequelize.TEXT)
       },
-      canRecordRemotely: {
-        type: Sequelize.BOOLEAN
-      },
       spotifyEmbedUrl: {
         type: Sequelize.STRING
       },
