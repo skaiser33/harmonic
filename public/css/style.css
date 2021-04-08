@@ -121,11 +121,7 @@ input {
   font-size: 1.5em;
 }
 
-.btn {
-  font-family: var(--alt-font);
-  display:inline-block;
-  margin:10px;
-}
+
 
 .form-control-file {
   margin-left: 0;
@@ -189,6 +185,11 @@ a:hover {
   color:rgb(171, 218, 247);
 } /* */
 
+.btn {
+  font-family: var(--alt-font);
+  display:inline-block;
+  margin:10px;
+}
 
 .btn-outline-success {
   

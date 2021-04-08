@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
-//get new profile form
+//GET NEW PROFILE FORM
 router.get('/new/:id', (req, res) => {
   db.instrument.findAll()
   .then((instruments) => {
@@ -23,7 +23,7 @@ router.get('/new/:id', (req, res) => {
   })
 })
 
-//post new profile form ASYNC AWAIT version
+//POST NEW PROFILE 
 router.post('/new/:id', async (req, res) => {
   try {
 
@@ -106,23 +106,44 @@ router.post('/new/:id', async (req, res) => {
   }	 
 });
 
+//GET NEW MESSAGE FORM
+router.get('/messages/new/:id', async (req, res) => {
+  try {
+    const foundUser = await db.user.findOne({    
+      where: {id: req.params.id}
+    })
+    res.render('profile/newmessage', {user: foundUser})
+
+  } catch (error) {
+    req.flash('error', error.message)
+    res.redirect(`/profile/${req.params.id}`)
+  }	 
+});
 
 
-//get profile by user id
-router.get('/:id', (req, res) => {
-  db.user.findOne({    
-    where: {id: req.params.id},
-    include: [db.city, db.instrument, db.genre, db.collaboration]
-  }).then((foundUser) => {
-    // console.log(user.collaborations);
-    res.render('profile/profile', {user: foundUser})
-  })
-})
-
-module.exports = router;
+//POST NEW MESSAGE
+router.post('/messages/new/:id', async (req, res) => {
+  try {
 
 
-//get user messages
+    const createdMessage = await db.message.create({
+      recipientId: req.params.id, 
+      senderId: req.user.id,  //or currentUser.id?
+      content: req.body.content
+      })
+      console.log("*********", createdMessage);
+      // res.render('profile/messages', {user: foundUser}, {messages: foundMessages})
+      res.redirect(`/profile/${req.params.id}`)
+
+  } catch (error) {
+      req.flash('error', error.message)
+      res.redirect(`/profile/${req.params.id}`)
+  }	 
+});
+
+
+
+//GET USER MESSAGES
 //TODO: order by createdAt
 router.get('/messages/:id', async (req, res) => {
   try {
@@ -144,7 +165,7 @@ router.get('/messages/:id', async (req, res) => {
             },
           ]
       })
-      console.log("*********",foundMessages[0].sender);
+      // console.log("*********",foundMessages[0].sender);
       // res.render('profile/messages', {user: foundUser}, {messages: foundMessages})
       res.render('profile/messages', {messages: foundMessages})
 
@@ -153,3 +174,17 @@ router.get('/messages/:id', async (req, res) => {
       res.redirect(`/profile/${req.params.id}`)
   }	 
 });
+
+
+//GET PROFILE BY USER ID
+router.get('/:id', (req, res) => {
+  db.user.findOne({    
+    where: {id: req.params.id},
+    include: [db.city, db.instrument, db.genre, db.collaboration]
+  }).then((foundUser) => {
+    // console.log(user.collaborations);
+    res.render('profile/profile', {user: foundUser})
+  })
+})
+
+module.exports = router;
