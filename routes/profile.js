@@ -127,7 +127,7 @@ router.post('/new/:id', async (req, res) => {
       where: { id: req.params.id }
     })
     
-    //CAN I REFACTOR THE FOLLOWING AS ONE FUNCTION and SUB IN?
+    //CAN I REFACTOR THE FOLLOWING AS ONE FUNCTION and SUB IN? [USING VERY SIMILAR IN SEARCH]
     // adds each checked instrument from form to checkedInstruments array
     for (const instrument of req.body.instrumentCheck) {
       const checkedInstrument = await db.instrument.findOne({
