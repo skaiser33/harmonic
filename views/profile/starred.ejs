@@ -1,5 +1,5 @@
-http://localhost:3000/search/index/?isBand=false&city=Chicago&instrumentCheck=Keyboards&collaborationCheck=Tours&genreCheck=Country&genres=&influences=Bowie%2C+Beatles
-
+<!-- TODO add button to save search RESULTS
+TODO add button to go back to search -->
 <div class="container">
   <% if (users.length) { %> 
     <h1>YOUR STARRED PROFILES</h1>
@@ -12,6 +12,10 @@ http://localhost:3000/search/index/?isBand=false&city=Chicago&instrumentCheck=Ke
           </div>
         </div>
         <br>
-      <% }) %>   
+        <% }) %>    
     </div>  
   <% } else { %>  
+    <h2>No Starred Profiles Yet!</h2>
+    <h3>Don't worry, you'll find the Simon to your Garfunkel. Just keep looking</h3>
+  <% } %>   
+</div>

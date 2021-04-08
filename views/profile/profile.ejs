@@ -19,6 +19,10 @@
   <input type="submit" value="Message <%= user.name %>" />
 </form>
 
+<form method="post" action="../profile/addstar/<%= user.id %>">
+  <input type="submit" value="Add To Starred List"/>
+</form>
+
 <!-- <button type="submit" class="btn button-primary" formmethod="get" formaction="profile/messages/new" formtarget="profile/messages/new">Message <%= user.name %></button> -->
 
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->

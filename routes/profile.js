@@ -2,6 +2,69 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
+
+//GET FAVORITES/STARRED PROFILES
+router.get('/starred', async (req, res) => {
+  try {
+        // const starredUsers = await db.user.findAll({    
+    //   include: [
+    //     { model: db.favorites,
+    //       as: 'favoriter',  
+    //     }],  
+    //   order: [['name', 'ASC']]
+    // }) 
+    let starredUsers = []
+    const foundFavorites = await db.favorites.findAll({
+      where: {favoriterId: req.user.id},
+    })
+
+    for (const favorite of foundFavorites) {
+      const starredUser = await db.user.findOne({
+        where: {id: favorite.favoritedId}
+      })
+      starredUsers.push(starredUser)
+    }
+
+      console.log(starredUsers);
+      res.render('profile/starred', {users: starredUsers})
+  } catch (error) {
+    req.flash('error', error.message)
+    res.redirect(`/`)
+  }	 
+});
+
+
+//POST NEW FAVORITE/STAR
+router.post('/addstar/:id', async (req, res) => {
+  try {
+    // const starredUser = await db.user.findByPk(req.params.id)
+    const createdStar = await db.favorites.create({
+      favoritedId: req.params.id, 
+      favoriterId: req.user.id,  //or currentUser.id?
+    })
+    console.log("*********", createdStar);
+    res.redirect(`/profile/${req.params.id}`)
+  } catch (error) {
+    req.flash('error', error.message)
+    res.redirect(`/profile/${req.params.id}`)
+  }	 
+});
+
+// router.post('/remove/:id', async (req, res) => {
+//   try {
+//     const foundJoke = await db.joke.findByPk(req.params.id)
+//     foundJoke.likes = foundJoke.likes - 1
+//     foundJoke.save()  
+//     const foundUser = await db.user.findByPk(req.user.id)
+//     foundUser.removeJoke(foundJoke)
+//     res.redirect(`/comedian?comedian=${query.comedian}`) 
+//   } catch (error) {
+//     req.flash('error', error.message)
+//     res.redirect(`/comedian?comedian=${query.comedian}`)
+//   }	 
+// });
+
+
 //GET NEW PROFILE FORM
 router.get('/new/:id', (req, res) => {
   db.instrument.findAll()

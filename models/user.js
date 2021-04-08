@@ -18,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       models.user.belongsToMany(models.instrument, {through: "usersInstruments"})
       models.user.belongsToMany(models.genre, {through: "usersGenres"})
       models.user.belongsToMany(models.collaboration, {through: "usersCollaborations"})
-      models.user.belongsToMany(models.user,{ through: "favorite", as: "favoriter", foreignKey: "favoriterId" });
-      models.user.belongsToMany(models.user,{ through: "favorite", as: "favorited", foreignKey: "favoritedId" });
-      models.user.belongsToMany(models.user,{ through: "unfavorite", as: "unfavoriter", foreignKey: "unfavoriterId" });
-      models.user.belongsToMany(models.user,{ through: "unfavorite", as: "unfavorited", foreignKey: "unfavoritedId" });
+      models.user.belongsToMany(models.user,{ through: "favorites", as: "favoriter", foreignKey: "favoriterId" });
+      models.user.belongsToMany(models.user,{ through: "favorites", as: "favorited", foreignKey: "favoritedId" });
+      models.user.belongsToMany(models.user,{ through: "unfavorites", as: "unfavoriter", foreignKey: "unfavoriterId" });
+      models.user.belongsToMany(models.user,{ through: "unfavorites", as: "unfavorited", foreignKey: "unfavoritedId" });
       
     }
     // Compares entered password to hashed password and returns boolean
