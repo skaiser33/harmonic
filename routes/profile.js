@@ -46,7 +46,6 @@ router.post('/new/:id', async (req, res) => {
       name: req.body.name,       
       influences: [req.body.influences],
       recordingCredits: [req.body.recordingCredits],
-      canRecordRemotely: req.body.canRecordRemotely, 
       spotifyEmbedUrl: req.body.spotifyEmbedUrl,
       soundcloudEmbedUrl: req.body.soundcloudEmbedUrl,
       youtubeEmbedUrl: req.body.youtubeEmbedUrl,
@@ -107,44 +106,6 @@ router.post('/new/:id', async (req, res) => {
   }	 
 });
 
-// //post new profile form .THEN
-// router.post('/new/:id', (req, res) => {
-//   db.user.update({
-//     isBand: false, //TODO value from radio form?
-//     name: req.body.name,       
-//     influences: [req.body.influences],
-//     recordingCredits: [req.body.recordingCredits],
-//     canRecordRemotely: false, //TODO value from radio form?
-//     spotifyEmbedUrl: req.body.spotifyEmbedUrl,
-//     soundcloudEmbedUrl: req.body.soundcloudEmbedUrl,
-//     youtubeEmbedUrl: req.body.youtubeEmbedUrl,
-//     localDraw: req.body.localDraw,
-//     nationalDraw: req.body.nationalDraw,
-//     //TODO: associate instruments, genres, collaboration
-//     //TODO value from radio form?
-//   }, {
-//     where: { id: req.params.id }
-//     // [note: the ‘user’ argument does not return the user data, just the number of rows updated]
-//   }).then(function(updated) {
-//     db.city.findOne({
-//       where: {name: req.body.city}
-//   }).then(function(city) {
-//     db.user.findOne({
-//       where: { id: req.params.id }
-//   }).then(function(user) {
-//     city.addUser(user)
-//     // console.log("********", user.cityId, "********");
-//     res.redirect('/');
-//   }).catch(error => {
-//     // FLASH
-//     req.flash('error', error.message);
-//     res.redirect(`/profile/new/${req.params.id}`);
-//     // res.redirect(`/profile/new/${user.id}`);
-//   });
-// });
-// });
-// });
-
 
 
 //get profile by user id
@@ -152,10 +113,43 @@ router.get('/:id', (req, res) => {
   db.user.findOne({    
     where: {id: req.params.id},
     include: [db.city, db.instrument, db.genre, db.collaboration]
-  }).then((user) => {
+  }).then((foundUser) => {
     // console.log(user.collaborations);
-    res.render('profile/profile', {user: user})
+    res.render('profile/profile', {user: foundUser})
   })
 })
 
 module.exports = router;
+
+
+//get user messages
+//TODO: order by createdAt
+router.get('/messages/:id', async (req, res) => {
+  try {
+    // const foundUser = await db.user.findOne({    
+    //   where: {id: req.params.id},
+    //   // include: [
+    //   //   { model: db.message,
+    //   //   // where: { recipientId: req.params.id },
+    //   //   },
+    //   // ]
+    // })
+
+    const foundMessages = await db.message.findAll({
+      where: { recipientId: req.params.id }, 
+        include: [
+            { model: db.user,
+               as: 'sender',
+            // where: { recipientId: req.params.id },
+            },
+          ]
+      })
+      console.log("*********",foundMessages[0].sender);
+      // res.render('profile/messages', {user: foundUser}, {messages: foundMessages})
+      res.render('profile/messages', {messages: foundMessages})
+
+  } catch (error) {
+      req.flash('error', error.message)
+      res.redirect(`/profile/${req.params.id}`)
+  }	 
+});

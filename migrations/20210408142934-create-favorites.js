@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      senderId: {
+      favoriterId: {
         type: Sequelize.INTEGER
       },
-      recipientId: {
+      favoritedId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

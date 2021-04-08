@@ -8,7 +8,7 @@ module.exports = {
     await db.sequelize.sync({force: true});
     console.log('All models synced');
 
-
+    
     //CITY SEED
     await queryInterface.bulkDelete('cities', null, {truncate: true, cascade: true, restartIdentity: true});    
 
@@ -470,6 +470,28 @@ module.exports = {
       ], { returning: true });
 
     console.log(bulkFavorites);
+
+
+    //message SEED
+    await queryInterface.bulkDelete('messages', null, {truncate: true, cascade: true, restartIdentity: true});    
+
+    const bulkMessages = await queryInterface.bulkInsert('messages', [
+      { senderId: 2,
+        recipientId: 1,
+        content: "Hey Steven. I've been itching to record drums on one of your projects and I have some free time this summer. Let me know if you want to get something on the books. Take care. -Jimmy",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      { senderId: 3,
+        recipientId: 1,
+        content: "Bonjour Steven. We were thinking of fleshing out our lineup by adding a 5th guitarist for our upcoming shows. Would you be interested? We can pay you in poutine. Au re voir -- GS!YBE",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      
+      ], { returning: true });
+
+    console.log(bulkMessages);
 
   },
 
