@@ -2,7 +2,7 @@
 
 <div class="container">
   <h2>NEW MESSAGE TO <%= user.name %></h2>
-  <form action="/profile/messages/new/<%= user.id %>" method="post">
+  <form action="/messages/new/<%= user.id %>" method="post">
     <div class="form-group">
       <label for="influences">Enter Your Message Here:</label>
       <textarea class="form-control" id="message-content" placeholder="Hey Mr. Tambourine Man..." rows="6" name="content"></textarea> 

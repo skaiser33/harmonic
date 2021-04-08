@@ -4,6 +4,8 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const db = require('../models');
 
+
+//GET MAIN SEARCH FORM
 router.get('/', (req, res) => {
   db.instrument.findAll()
   .then((instruments) => {
@@ -25,7 +27,7 @@ router.get('/', (req, res) => {
   })
 })
 
-//get index of search results
+//GET INDEX OF SEARCH RESULTS
 router.get('/index', (req, res) => {
   console.log(req.query.instrumentCheck)
   db.user.findAll({    
