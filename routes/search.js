@@ -33,6 +33,13 @@ router.get('/', (req, res) => {
   })
 })
 
+//POST TO MAIN SEARCH FORM TO MODIFY
+router.post('/', (req, res) => {
+  localStorage.setItem("name", "tony");
+  res.redirect('/')
+
+})
+
 
 //GET INDEX OF SEARCH RESULTS
 router.get('/index', async (req, res) => {
@@ -57,7 +64,7 @@ router.get('/index', async (req, res) => {
       include: [db.instrument, db.collaboration, db.genre],
 
       where: {
-        // isBand: req.query.isBand,
+        isBand: req.query.isBand,
         cityId: req.query.city
         // influences: (%___%): split(",")
       },
@@ -166,3 +173,8 @@ router.post('/savesearch', async (req, res) => {
 });
 
 module.exports = router;
+
+{/* <script>
+    let user = <%- JSON.stringify(user) %>;
+    localStorage.setItem('info', JSON.stringify({'user': user}));
+  </script> */}

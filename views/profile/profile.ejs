@@ -10,6 +10,13 @@
 <!-- else  -->
   <!-- add star, message, and testimonial functionality -->
 
+<% if (user.id === currentUser.id) { %> 
+  <h2>It's me!</h2>
+  <form method="get" action="../profile/edit/<%= user.id %> ">
+    <button class="btn btn-primary" value="" name="editProfile" type="submit">EDIT PROFILE</button>
+  </form>
+<% } %>
+
 <ul class="profile-list">
 <li>Location: <%= user.city.name  %></li>
 

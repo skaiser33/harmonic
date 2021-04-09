@@ -1,5 +1,8 @@
 http://localhost:3000/search/index/?isBand=false&city=Chicago&instrumentCheck=Keyboards&collaborationCheck=Tours&genreCheck=Country&genres=&influences=Bowie%2C+Beatles
 
+  <% user.recordingCredits.forEach(function(recordingCredit) { %>
+  <%= recordingCredit %>
+  <% }) %> 
   <div class="container">
   <form method="get" action="../messages/new/<%= user.id %>">
     <input type="submit" value="Message <%= user.name %>" />

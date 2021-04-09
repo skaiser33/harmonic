@@ -1,10 +1,14 @@
 <!-- TODO add button to save search RESULTS
 TODO add button to go back to search -->
 
+<!-- <form method="get" action="../../search/" autocomplete="on"> -->
+<!-- <form onclick="window.history.go(-1)" > -->
+  <!-- <button class="btn btn-primary" value="%= storedSearchString %>" name="modifySearch" type="submit">MODIFY SEARCH</button> -->
+  <!-- <button class="btn btn-primary" name="modifySearch" type="submit">MODIFY SEARCH</button>
+</form> -->
 
 <form method="post" action="../../search/savesearch/">
-  <!-- <input type="submit" value="Save This Search"/> -->
-  <button value="<%= storedSearchString %>" name="storedSearchString" type="submit">Save This Search</button>
+  <button class="btn btn-primary" value="<%= storedSearchString %>" name="storedSearchString" type="submit">SAVE THIS SEARCH</button>
 </form>
 
   <% if (users.length) { %> 
@@ -26,11 +30,4 @@ TODO add button to go back to search -->
     <h2>No Matches</h2>
     <h4>Refine Your Search and Try Again</h4>
   <% } %>  
-  <!-- REFINE SEARCH btn -->
-
-  <a href="?<%= storedSearchString %>">RECREATE SEARCH</a> 
-  
-  <!-- SAVE THIS SEARCH btn, modal popup to name search-->
-    <!-- needs to save req.query -->
-      <!-- clicking on the search later will GET search/index/${req.query} -->
 </div>
