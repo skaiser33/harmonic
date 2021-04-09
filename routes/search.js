@@ -40,7 +40,6 @@ router.get('/', (req, res) => {
 router.get('/index', async (req, res) => {
   try {
 
-
     function doesArrayInclude(arr, target){
       return arr.every(value => target.includes(value));
     }
@@ -67,7 +66,7 @@ router.get('/index', async (req, res) => {
     foundUsers.forEach(foundUser => {    
       let genreMatch = true 
       let collaborationMatch = true 
-      let isntrumentMatch = true 
+      let instrumentMatch = true 
       let userInstruments, userGenres, userCollaborations
 
       userInstruments = foundUser.instruments.map(function(instrument){
@@ -98,9 +97,9 @@ router.get('/index', async (req, res) => {
         collaborationMatch = (doesArrayInclude(checkedCollaborations, userCollaborations)) 
       }
 
-      isntrumentMatch = doesArrayInclude(checkedInstruments, userInstruments)
+      instrumentMatch = doesArrayInclude(checkedInstruments, userInstruments)
 
-      if (genreMatch && collaborationMatch && isntrumentMatch){
+      if (genreMatch && collaborationMatch && instrumentMatch){
         filteredUsers.push(foundUser)
       }
       // console.log("***************userGenres", userGenres);
@@ -111,7 +110,7 @@ router.get('/index', async (req, res) => {
       // console.log("***************collaborationMatch", collaborationMatch);
       // console.log("***************userInstruments", userInstruments);
       // console.log("***************checkedInstruments", checkedInstruments);
-      // console.log("***************isntrumentMatch", isntrumentMatch);
+      // console.log("***************instrumentMatch", instrumentMatch);
     })  
     // console.log("***************filteredusers", filteredUsers);
 
