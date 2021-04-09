@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+// const { and } = require('sequelize/types/lib/operators');
+// const Op = Sequelize.Op;
 const db = require('../models');
 
 // function arrayEquals(a, b) {
@@ -34,114 +35,94 @@ router.get('/', (req, res) => {
   })
 })
 
-//TODO:  HOW DO I SEARCH THROUGH ARRAYS?
+
 //GET INDEX OF SEARCH RESULTS
 router.get('/index', async (req, res) => {
-  // console.log(req.query.instrumentCheck)
-  const doesArrayInclude = (arr, target) => target.every(v => arr.includes(v));
-  // let checkedInstruments = []
-  // let checkedCollaborations = []
-  // let checkedGenres = []
-  let filteredUsers = []
-  let userInstruments, userGenres, userCollaborations
+  try {
 
-        //CAN I REFACTOR THE FOLLOWING AS ONE FUNCTION and SUB IN? [USING VERY SIMILAR IN SEARCH]
-  // adds each checked instrument from form to checkedInstruments array
-  // for (const instrument of req.query.instrumentCheck) {
-  //   const checkedInstrument = await db.instrument.findOne({
-  //     where: {name: instrument}
-  //   })
-  //   checkedInstruments.push(checkedInstrument)
-  // }
 
-  // // adds each checked collaboration from form to checkedcollaborations array
-  // if (req.body.collaborationCheck) {
-  //   for (const collaboration of req.query.collaborationCheck) {
-  //     const checkedCollaboration = await db.collaboration.findOne({
-  //       where: {type: collaboration}
-  //     })
-  //     checkedCollaborations.push(checkedCollaboration)
-  //   }  
-  // }
+    function doesArrayInclude(arr, target){
+      return arr.every(value => target.includes(value));
+    }
 
-  // // adds each checked collaboration from form to checkedcollaborations array
-  // if (req.body.genreCheck) {
-  //   for (const genre of req.query.genreCheck) {
-  //     const checkedGenre = await db.genre.findOne({
-  //       where: {name: genre}
-  //     })
-  //     checkedGenres.push(checkedGenre)
-  //   }
-  // }
-  
-  foundUsers = await db.user.findAll({
-    include: [db.instrument, db.collaboration, db.genre],
+    let filteredUsers = [], checkedGenres = [], checkedInstruments = [], checkedCollaborations = []
 
-    //   { model: db.instrument,
-    //     where: {
-    //       // [Op.and]: [{ name: "Drums" }, { name: "Cello" }]},
-    //         // name: {[Op.and]: ["Drums", "Cello"]}}
-    //       name: ["Drums", "Cello"] },
-    //   },
-    //   // { model: db.collaboration,
-    //   //   where: { type: "Shows" },
-    //   // },
-    //   // { model: db.genre,
-    //   //   where: { name: "Experimental" },
-    //   // },
-    // ],  
-    where: {
-      isBand: false, //req.query.isBand,
-      // cityId: req.query.city
-      //influences (%___%): split(",")
-    },
-    order: [['name', 'ASC']]
-    // include: [db.city, db.instrument, db.genre, db.collaboration]
-  })
+    typeof (req.query.genreCheck) === "string" ? checkedGenres = [req.query.genreCheck] : checkedGenres = req.query.genreCheck
 
-  //iterate through foundUsers
+    typeof (req.query.collaborationCheck) === "string" ? checkedCollaborations = [req.query.collaborationCheck] : checkedCollaborations = req.query.collaborationCheck
+
+    typeof (req.query.instrumentCheck) === "string" ? checkedInstruments = [req.query.instrumentCheck] : checkedInstruments = req.query.instrumentCheck
     
-    //iterate through checkedInstrument + genres + collabs (if length)
+    foundUsers = await db.user.findAll({
+      include: [db.instrument, db.collaboration, db.genre],
 
+      where: {
+        isBand: req.query.isBand,
+        cityId: req.query.city
+        // influences: (%___%): split(",")
+      },
+      order: [['name', 'ASC']]
+    })
 
-        //
-    //let userInstruments = []
-    //if all user
     foundUsers.forEach(foundUser => {    
+      let genreMatch = true 
+      let collaborationMatch = true 
+      let isntrumentMatch = true 
+      let userInstruments, userGenres, userCollaborations
+
       userInstruments = foundUser.instruments.map(function(instrument){
         return instrument.name
       })
+
       if (foundUser.genres.length) {
         userGenres = foundUser.genres.map(function(genre){
           return genre.name
         })
+      } else {
+        userGenres = ["Empty"]
       }
+
       if (foundUser.collaborations.length) {
         userCollaborations = foundUser.collaborations.map(function(collaboration){
           return collaboration.type
         })
+      } else {
+        userCollaborations = ["Empty"]
       }
-      if ((doesArrayInclude(userInstruments, req.query.instrumentCheck)) 
-        //THESE GUYS GOTTA BE IN CONDITIONALS TO SEE IF THEY EXIST, SHOULD I SET A VARIABLE THAT GETS BUMPED TO FALSE IF ANY OF THEM DON'T MATCH UP
-        && (doesArrayInclude(userGenres, req.query.genreCheck))
-        && (doesArrayInclude(userCollaborations, req.query.collaborationCheck)) 
-      ){
+
+      if (req.query.genreCheck){
+        genreMatch = (doesArrayInclude(checkedGenres, userGenres))
+      }  
+      
+      if (req.query.collaborationCheck){
+        collaborationMatch = (doesArrayInclude(checkedCollaborations, userCollaborations)) 
+      }
+
+      isntrumentMatch = doesArrayInclude(checkedInstruments, userInstruments)
+
+      if (genreMatch && collaborationMatch && isntrumentMatch){
         filteredUsers.push(foundUser)
-        }
-    });  
+      }
+      // console.log("***************userGenres", userGenres);
+      // console.log("***************checkedGenres", checkedGenres);
+      // console.log("***************genreMatch", genreMatch);
+      // console.log("***************userCollaborations", userCollaborations);
+      // console.log("***************checkedCollaborations", checkedCollaborations);
+      // console.log("***************collaborationMatch", collaborationMatch);
+      // console.log("***************userInstruments", userInstruments);
+      // console.log("***************checkedInstruments", checkedInstruments);
+      // console.log("***************isntrumentMatch", isntrumentMatch);
+    })  
+    // console.log("***************filteredusers", filteredUsers);
 
-    // console.log('*************userGenres', found);
-    console.log('*************queryGenres', req.query.genreCheck);
-    console.log('*************queryGenres', req.query.collaborationCheck);
-    // console.log('*************', req.query.instrumentCheck);
-    console.log("***************filteredusers", filteredUsers);
-    // console.log("***************checkedinstr", checkedInstruments);
-    // console.log("***************", doesArrayInclude(foundsUsers[0].instruments, checkedInstruments));
+    res.render('search/index', {users: filteredUsers})
+  } catch (error) {
+    req.flash('error', error.message)
+    res.redirect(`/search`)
+  }
+})
 
-    // console.log("***************", doesArrayInclude(["Drums", "Bass", "Cats"], ["Drums", "Cello"]));
-    // console.log("***************founduserinstr", foundUsers[0].instruments);
-    // res.render('search/index', {users: filteredUsers})
-  })
+
 
 
 module.exports = router;
