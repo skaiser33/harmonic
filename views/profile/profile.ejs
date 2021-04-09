@@ -11,24 +11,25 @@
   <!-- add star, message, and testimonial functionality -->
 
 <% if (user.id === currentUser.id) { %> 
-  <h2>It's me!</h2>
   <form method="get" action="../profile/edit/<%= user.id %> ">
     <button class="btn btn-primary" value="" name="editProfile" type="submit">EDIT PROFILE</button>
   </form>
-<% } %>
+<% } else { %>
+  <form method="get" action="../messages/new/<%= user.id %>">
+    <input type="submit" value="Message <%= user.name %>" />
+  </form>
+  
+  <form method="post" action="../profile/addstar/<%= user.id %>">
+    <input type="submit" value="Add To Starred List"/>
+  </form>
+  
+<% }  %>
 
 <ul class="profile-list">
 <li>Location: <%= user.city.name  %></li>
 
 <!-- <a href="https://google.com" class="btn button-primary">Message <%= user.name %></a> -->
 
-<form method="get" action="../messages/new/<%= user.id %>">
-  <input type="submit" value="Message <%= user.name %>" />
-</form>
-
-<form method="post" action="../profile/addstar/<%= user.id %>">
-  <input type="submit" value="Add To Starred List"/>
-</form>
 
 <!-- <button type="submit" class="btn button-primary" formmethod="get" formaction="profile/messages/new" formtarget="profile/messages/new">Message <%= user.name %></button> -->
 

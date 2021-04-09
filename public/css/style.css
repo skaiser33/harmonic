@@ -11,6 +11,7 @@ ANYTHING?  font-family: 'New Tegomin', serif;*/
   --alt-font: 'Rajdhani', sans-serif; 
 }
 
+
 body {
   display: flex;
   min-height: 100vh;
@@ -233,7 +234,9 @@ a:hover {
   border:2px solid #dc3545;
 }
 
-
+.hide {
+  display: none;
+}
 
 /*
 ####################################################

@@ -95,7 +95,7 @@ router.post('/edit/:id', async (req, res) => {
     let checkedInstruments = []
     let checkedCollaborations = []
     let checkedGenres = []
-    
+
     const updatedUser = await db.user.update({
       isBand: req.body.isBand,
       name: req.body.name,       
@@ -162,8 +162,21 @@ router.post('/edit/:id', async (req, res) => {
 });
 
 
-
 // POST PROFILE PHOTO UPDATE
+// router.post('/profile/addphoto/:id', async (req, res) => {
+//   try {
+//     const photoFile = req.FILES.get('photo-file', None)
+
+router.post('/addphoto/:id', function(req, res){
+  if(req.files.image !== undefined){ // `image` is the field name from your form
+      
+    res.redirect(`/profile/${req.params.id}`); // success
+  }else{
+      res.send("error, no file chosen");
+  }
+});    
+
+
 // def add_photo(request, profile_id):
 //   photo_file = request.FILES.get('photo-file', None)
 //   if photo_file:
@@ -177,6 +190,8 @@ router.post('/edit/:id', async (req, res) => {
 //     except:
 //       print('An error occurred uploading file to S3')
 //   return redirect('profile')
+
+
 
 
 //GET NEW PROFILE FORM
@@ -220,7 +235,7 @@ router.post('/new/:id', async (req, res) => {
     // }
 
     const updatedUser = await db.user.update({
-      isBand: req.body.isBand,
+      
       name: req.body.name,       
       influences: [req.body.influences],
       recordingCredits: [req.body.recordingCredits],

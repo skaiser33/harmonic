@@ -13,6 +13,7 @@ router.post('/signup', (req, res) => {
     defaults: {
       name: req.body.name,
       password: req.body.password,
+      isBand: req.body.isBand,
       profilePhotoUrl: "https://i.imgur.com/OcnPNEf.jpg"
     }
   }).then(([user, created]) => {
