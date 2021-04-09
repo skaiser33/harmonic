@@ -1,0 +1,29 @@
+<!-- TODO add button to save search RESULTS
+TODO add button to go back to search -->
+<h1>SAVED SEARCHES</h1>
+
+<div class="container">
+  <% if (searches.length) { %> 
+    <h1>SAVED SEARCHES</h1>
+    <div class="container">
+      <% searches.forEach(function(search) { %>
+        <div class="card">
+          <div class="card-body">           
+            <a class="review-title align-middle" href="../../search/index/?<%= search.content %>"><%= search.name %></a>
+          </div>
+        </div>
+        <br>
+      <% }) %>   
+    </div>  
+
+
+  <% } else { %>  
+    <h2>No Saved Searches Yet</h2>
+    <h4>Start a new search <a href="/search">here</a>.</h4>
+  <% } %>  
+  <!-- REFINE SEARCH btn -->
+  
+  <!-- SAVE THIS SEARCH btn, modal popup to name search-->
+    <!-- needs to save req.query -->
+      <!-- clicking on the search later will GET search/index/${req.query} -->
+</div>

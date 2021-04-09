@@ -26,6 +26,9 @@ sequelize model:create --name message --attributes senderId:integer,recipientId:
 //TESTIMONIAL
 sequelize model:create --name testimonial --attributes senderId:integer,recipientId:integer,content:text
 
+//SEARCH
+sequelize model:create --name search --attributes content:text,userId:integer
+
 //FAVORITES
 sequelize model:create --name favorites --attributes senderId:integer,recipientId:integer
 

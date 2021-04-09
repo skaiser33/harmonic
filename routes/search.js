@@ -5,13 +5,10 @@ const Sequelize = require('sequelize');
 // const Op = Sequelize.Op;
 const db = require('../models');
 
-// function arrayEquals(a, b) {
-//   return Array.isArray(a) &&
-//     Array.isArray(b) &&
-//     a.length === b.length &&
-//     a.every((val, index) => val === b[index]);
-// }
 
+// router.get('/saved/:id', (req, res) => {
+//   res.render("/")
+// });
 
 //GET MAIN SEARCH FORM
 router.get('/', (req, res) => {
@@ -45,6 +42,9 @@ router.get('/index', async (req, res) => {
     }
 
     let filteredUsers = [], checkedGenres = [], checkedInstruments = [], checkedCollaborations = []
+    
+    let storedSearchObject = req.query
+    let storedSearchString = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&');
 
     typeof (req.query.genreCheck) === "string" ? checkedGenres = [req.query.genreCheck] : checkedGenres = req.query.genreCheck
 
@@ -102,6 +102,7 @@ router.get('/index', async (req, res) => {
       if (genreMatch && collaborationMatch && instrumentMatch){
         filteredUsers.push(foundUser)
       }
+      
       // console.log("***************userGenres", userGenres);
       // console.log("***************checkedGenres", checkedGenres);
       // console.log("***************genreMatch", genreMatch);
@@ -113,8 +114,9 @@ router.get('/index', async (req, res) => {
       // console.log("***************instrumentMatch", instrumentMatch);
     })  
     // console.log("***************filteredusers", filteredUsers);
-
-    res.render('search/index', {users: filteredUsers})
+    console.log("***************query", req.query);
+    res.render('search/index', {users: filteredUsers, storedSearchString: storedSearchString, storedSearchObject: storedSearchObject} )
+    // res.render('search/index', {users: filteredUsers})
   } catch (error) {
     req.flash('error', error.message)
     res.redirect(`/search`)
@@ -123,5 +125,25 @@ router.get('/index', async (req, res) => {
 
 
 
+router.get('/saved/:id', async (req, res) => {
+  try {
+    const foundSearches = await db.search.findAll({
+      where: { userId: req.params.id },       
+        // include: [
+        //     { model: db.user,
+        //        as: 'sender',
+        //     // where: { recipientId: req.params.id },
+        //     },
+        //   ],
+          order: [['createdAt', 'DESC']]
+      })
+      res.render('search/saved', {searches: foundSearches})
+      // res.render('search/saved')
+
+  } catch (error) {
+      req.flash('error', error.message)
+      res.redirect(`/`)
+  }	 
+});
 
 module.exports = router;

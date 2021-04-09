@@ -1,5 +1,14 @@
 http://localhost:3000/search/index/?isBand=false&city=Chicago&instrumentCheck=Keyboards&collaborationCheck=Tours&genreCheck=Country&genres=&influences=Bowie%2C+Beatles
 
+  <div class="container">
+  <form method="get" action="../messages/new/<%= user.id %>">
+    <input type="submit" value="Message <%= user.name %>" />
+  </form>
+  
+  <form method="post" action="../search/savesearch/<%= storedSearchString %>">
+    <input type="submit" value="Save This Search"/>
+  </form>
+
 foundUsers = await db.user.findAll({
     include: [db.instrument, db.collaboration, db.genre],
 

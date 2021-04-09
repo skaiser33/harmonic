@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       models.user.belongsTo(models.city)
       models.user.hasMany(models.testimonial)
       models.user.hasMany(models.message)
+      models.user.hasMany(models.search)
       models.user.belongsToMany(models.instrument, {through: "usersInstruments"})
       models.user.belongsToMany(models.genre, {through: "usersGenres"})
       models.user.belongsToMany(models.collaboration, {through: "usersCollaborations"})

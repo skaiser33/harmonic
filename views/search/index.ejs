@@ -1,6 +1,9 @@
 <!-- TODO add button to save search RESULTS
 TODO add button to go back to search -->
-<div class="container">
+
+
+
+
   <% if (users.length) { %> 
     <h1>SEARCH RESULTS</h1>
     <div class="container">
@@ -20,4 +23,11 @@ TODO add button to go back to search -->
     <h2>No Matches</h2>
     <h4>Refine Your Search and Try Again</h4>
   <% } %>  
+  <!-- REFINE SEARCH btn -->
+
+  <a href="?<%= storedSearchString %>">RECREATE SEARCH</a> 
+  
+  <!-- SAVE THIS SEARCH btn, modal popup to name search-->
+    <!-- needs to save req.query -->
+      <!-- clicking on the search later will GET search/index/${req.query} -->
 </div>
