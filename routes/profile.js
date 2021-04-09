@@ -284,7 +284,7 @@ router.post('/new/:id', async (req, res) => {
       }
     }
 
-    console.log("********", foundUser.isBand, foundUser.canRecordRemotely, "********")
+    console.log("********checkedInstruments", checkedInstruments, "********")
     foundCity.addUser(foundUser)
     //accepts array as argument
     foundUser.addInstruments(checkedInstruments)
