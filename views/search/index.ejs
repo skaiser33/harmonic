@@ -2,7 +2,10 @@
 TODO add button to go back to search -->
 
 
-
+<form method="post" action="../../search/savesearch/">
+  <!-- <input type="submit" value="Save This Search"/> -->
+  <button value="<%= storedSearchString %>" name="storedSearchString" type="submit">Save This Search</button>
+</form>
 
   <% if (users.length) { %> 
     <h1>SEARCH RESULTS</h1>

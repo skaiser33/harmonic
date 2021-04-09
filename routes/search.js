@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Sequelize = require('sequelize');
 // const { and } = require('sequelize/types/lib/operators');
+// const { and } = require('sequelize/types/lib/operators');
 // const Op = Sequelize.Op;
 const db = require('../models');
 
@@ -56,7 +57,7 @@ router.get('/index', async (req, res) => {
       include: [db.instrument, db.collaboration, db.genre],
 
       where: {
-        isBand: req.query.isBand,
+        // isBand: req.query.isBand,
         cityId: req.query.city
         // influences: (%___%): split(",")
       },
@@ -124,7 +125,7 @@ router.get('/index', async (req, res) => {
 })
 
 
-
+//GET SAVED SEARCHES FOR USER
 router.get('/saved/:id', async (req, res) => {
   try {
     const foundSearches = await db.search.findAll({
@@ -140,6 +141,24 @@ router.get('/saved/:id', async (req, res) => {
       res.render('search/saved', {searches: foundSearches})
       // res.render('search/saved')
 
+  } catch (error) {
+      req.flash('error', error.message)
+      res.redirect(`/`)
+  }	 
+});
+
+//POST NEW SAVED SEARCH TO USER
+router.post('/savesearch', async (req, res) => {
+  try {
+    const createdSearch = await db.search.create({
+      userId: req.user.id, 
+      name: "S.F.-based Band",
+      content: req.body.storedSearchString
+    })
+    // TODO: Toggle Save Search Button if already saved
+    console.log("******content", createdSearch.content);
+    req.flash('success', 'Your search has been saved');
+    res.redirect(`/search/index/?${createdSearch.content}`);
   } catch (error) {
       req.flash('error', error.message)
       res.redirect(`/`)
