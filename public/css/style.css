@@ -60,12 +60,20 @@ nav ul li {
 }
 
 .nav-link {
-  font-size: .2em;
+  font-size: .7em;
 }
 
 .navbar-toggler {
   margin: 0 10px 0 0;
 }
+
+.dropdown-toggle::after {
+  color: var(--red);
+  position: absolute;
+  margin: 40px 0 0 0px;
+  font-size: 3em;
+}
+
 
 
 /* IMAGES */
@@ -194,6 +202,12 @@ input {
 .row {
   margin: 0 -5px 5px -5px;
 }
+
+.search-title {
+  margin: 0px;
+}
+
+
 
 /* .search-title {
   font-size: 40px;
@@ -401,6 +415,10 @@ Bootstrap 4 breakpoints
   h4 {
     font-size: 1.3em;
   }
+  .dropdown-toggle::after {
+    font-size: 3em;
+    margin: 60px 0 0 0px ;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -429,6 +447,10 @@ Bootstrap 4 breakpoints
   }
   .card-content {
     font-size: 1.3em;
+  }
+  .dropdown-toggle::after {
+    font-size: 1em;
+    margin: 60px 0 0 -15px ;
   }
 }
 

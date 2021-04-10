@@ -5,6 +5,7 @@ const Sequelize = require('sequelize');
 // const { not } = require('sequelize/types/lib/operators');
 const Op = Sequelize.Op;
 const db = require('../models');
+const dateFormat = require('dateformat');
 
 
 // router.get('/saved/:id', (req, res) => {
@@ -146,7 +147,7 @@ router.get('/saved/:id', async (req, res) => {
         //   ],
           order: [['createdAt', 'DESC']]
       })
-      res.render('search/saved', {searches: foundSearches})
+      res.render('search/saved', {searches: foundSearches, dateFormat: dateFormat})
       // res.render('search/saved')
 
   } catch (error) {
@@ -160,7 +161,7 @@ router.post('/savesearch', async (req, res) => {
   try {
     const createdSearch = await db.search.create({
       userId: req.user.id, 
-      name: "S.F.-based Band",
+      name: "Your Saved Search",
       content: req.body.storedSearchString
     })
     // TODO: Toggle Save Search Button if already saved

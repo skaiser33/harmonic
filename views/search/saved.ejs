@@ -2,12 +2,13 @@
 TODO add button to go back to search -->
 <div class="container">
   <% if (searches.length) { %> 
-    <h1>Your Saved Searches</h1>
+    <h2>Your Saved Searches</h2>
     <div class="container">
       <% searches.forEach(function(search) { %>
         <div class="card">
           <div class="card-body">           
-            <a class="review-title align-middle" href="../../search/index/?<%= search.content %>"><%= search.name %></a>
+            <h5><a class="search-title" href="../../search/index/?<%= search.content %>"><%= search.name %></a></h5>
+            <p class="date my-auto">Created on <%= dateFormat(search.createdAt, "dddd, mmmm dS, yyyy, h:MM TT"); %> </p> 
           </div>
         </div>
         <br>
