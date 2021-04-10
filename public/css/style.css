@@ -177,6 +177,10 @@ input {
   margin-left: 0;
 }
 
+.other-input {
+  margin: 0 5px;
+}
+
 /* .form-check-input:checked {
   color: red;
   background-color: red;
@@ -227,11 +231,13 @@ input {
 
 .search-form {
   font-size: 1em;
+  margin-bottom: 10px;
 }
 
 .form-header {
   font-size: 1.3em;
 }
+
 
 /* .form-small {
   max-width: 50%;
@@ -436,6 +442,28 @@ a:hover {
 li {
   font-size: 1.5em;
 }  
+
+.about-card {
+  border-top: 3px solid var(--red);
+  /* border-radius: 2%; */
+}
+
+.about-container {
+  /* padding: 10px; */
+  font-size: 1em;
+  border: 3px solid var(--red)
+  /* margin-top: 20px; */
+  /* background-color: rgb(73, 72, 72); */
+}
+
+.about-black {
+  color: black;
+}
+
+.card-title {
+  padding: 0px;
+}
+
 /* .center {
   align-items: center;
 } */

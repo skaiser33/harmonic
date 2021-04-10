@@ -76,6 +76,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
 app.post('/upload', upload.array('upl',1), function (req, res, next) {
   res.send("Uploaded!");
 });

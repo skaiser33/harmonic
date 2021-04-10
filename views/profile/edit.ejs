@@ -1,15 +1,17 @@
 <div class="container">
   <h1>UPDATE YOUR PROFILE</h1>
-
-    <img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image" width=200 height=200>
-    <form action="../../upload/"  method="POST">
-      <div class="form-group">      
-        <input class="form-control-file btn" type="file" name="image">
+  <div class="container">
+    <form class="search-form" action="../../upload/"  method="POST">
+      <img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image" width=200 height=200>
+      <div class="form-group ">      
+        <input class="form-control-file btn btn-secondary" type="file" name="image">
         <p>
-        <input type="submit" class="btn btn-primary" value="Update Profile Picture">
+        <input type="submit" class="btn btn-secondary" value="Update Profile Picture">
       </div>
     </form>
-    <form action="/profile/edit/<%= user.id %>" method="POST">
+  </div>
+    <form class="search-form" action="/profile/edit/<%= user.id %>" method="POST">
+
   <div class="form-group">
     <label for="name">Name</label>
     <input id="name" class="form-control" type="text" placeholder="Name" name="name" value="<%= user.name %>">
@@ -32,12 +34,12 @@
       Required.
     </small>
   </div>
-  
+  <br>
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
   <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
   <% if (user.isBand === false) {%> 
-    <p> Instruments You Play</p>
+    <p class="tiny-margin"> Instruments You Play</p>
   <% } else { %> 
     <p>Your Band Is Looking To Collaborate With Musicians Who Play:</p>
   <% } %> 
@@ -54,13 +56,13 @@
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="other">
       <label class="form-check-label" for="inlineCheckbox3">Other</label>
-      <input id="instruments" type="text" name="instruments">
+      <input class="other-input" id="instruments" type="text" name="instruments">
     </div>    
   </div>
-
+  <br><
   <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
-    <p> What types of collaborations are you interested in?</p>
+    <p class="tiny-margin"> What types of collaborations are you interested in?</p>
     <small id="collaborationsHelpBlock" class="form-text text-muted">
       Required. Select all that apply.
     </small>
@@ -74,10 +76,10 @@
       <input id="collaborations" type="text" name="collaborations">
     </div>     -->
   </div>
-  
+  <br>
   <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
-    <p>Genre(s)</p>    
+    <p class="tiny-margin">Genre(s)</p>    
     <small id="genresHelpBlock" class="form-text text-muted">
       Select all that apply.
     </small>
@@ -90,9 +92,10 @@
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="other">
         <label class="form-check-label" for="inlineCheckbox3">Other</label>
-        <input id="genres" type="text" name="genres">
+        <input class="other-input" id="genres" type="text" name="genres">
       </div>  
-    
+  
+      <br><br>
   <div class="form-group">
     <label for="influences">Influences</label>
     <textarea class="form-control" id="influences" placeholder="ie: The Beatles, Parliament Funkadelic, ABBA" rows="3" name="influences" value="<%= user.influences[0] %>"
@@ -156,28 +159,30 @@ Close To The Edge - Yes - 1972 - Keyboards/Organ" name="recordingCredits" rows="
     <% } %>
 
     
-    <input type="submit" class="btn btn-primary" value="Update Profile">
+    <input type="submit" class="btn btn-secondary" value="Update Profile">
   </div>
 </form>
+
+<div class="acct-container">
+  <!-- <h2 class="acct subheading">Account Settings</h2> -->
+  <div class="pswd-container">
+    <h2>Modify Your Password</h2>
+    <form class="acct-form" action="/auth/changepw" method="POST">
+      <label for="old-password">Enter current password:</label>
+      <input class="pswd-input" id="old-password" type="password" name="oldpassword">
+      <br><br>
+      <label for="updated-password">Enter new password:</label>
+      <input class="pswd-input" id="updated-password" type="password" name="updatedpassword">
+      <br><br>
+      <input class="btn btn-secondary" type="submit" value="Update Password">
+    </form>
+  </div> 
 </div>
 <!-- add profile photo here or wait to do that later? -->
 
 <!-- TODO: Form validation (required fields, input type) -->
 
-  <div class="acct-container">
-    <h2 class="acct subheading">Account Settings</h2>
-    <div class="pswd-container">
-      <h3>Modify My Password</h3>
-      <form class="acct-form" action="/auth/changepw" method="POST">
-        <label for="old-password">Enter current password:</label>
-        <input class="pswd-input" id="old-password" type="password" name="oldpassword">
-        <br><br>
-        <label for="updated-password">Enter new password:</label>
-        <input class="pswd-input" id="updated-password" type="password" name="updatedpassword">
-        <br><br>
-        <input class="btn-pswd" type="submit" value="Update Password">
-      </form>
-    </div>   
+  
     <!-- <div class="delete-acct-container" >
       <h3>Delete My Account</h3>
       <form method="GET" action="/auth/delete">
