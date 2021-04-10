@@ -1,41 +1,39 @@
-<div class="container">
-  <div class="row">
-<h2><%= user.name  %></h2>
-<img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image" width=200 height=200>
-</div>
-<p>Joined Harmonic on <%= user.createdAt %> </p>
-<p>Last Active on <%= user.lastActive %> </p>
+<div class="container profile-container">
+  <div class="row profile-title">
+    <h2 class=""><%= user.name  %></h2>
+    <img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image">
+  </div>
+<p class="date">Joined Harmonic on <%= dateFormat(user.createdAt, "mmm dS, yyyy"); %> </p>
+<p class="date">Last Active on <%= dateFormat(user.lastActive, "mmm dS, yyyy"); %> </p>
+<!-- <p>Last Active on <%= user.lastActive %> </p> -->
 <!-- if (user.id === req.user.id) -->
   <!-- add edit functionality -->
 <!-- else  -->
   <!-- add star, message, and testimonial functionality -->
 
 <% if (user.id === currentUser.id) { %> 
-  <form method="get" action="../profile/edit/<%= user.id %> ">
-    <button class="btn btn-primary" value="" name="editProfile" type="submit">EDIT PROFILE</button>
+  <form class="btn-form" method="get" action="../profile/edit/<%= user.id %> ">
+    <button class="btn btn-secondary" value="" name="editProfile" type="submit">EDIT PROFILE</button>
   </form>
 <% } else { %>
-  <form method="get" action="../messages/new/<%= user.id %>">
-    <input type="submit" value="Message <%= user.name %>" />
+  <div class="row">
+  <form class="btn-form" method="get" action="../messages/new/<%= user.id %>">
+    <input class="btn btn-secondary" type="submit" value="Message <%= user.name %>" />
   </form>
   
-  <form method="get" action="../profile/testimonial/<%= user.id %>">
-    <input type="submit" value="Leave <%= user.name %> A Testimonial" />
+  <form class="btn-form" method="post" action="../profile/addstar/<%= user.id %>">
+    <input class="btn btn-secondary" type="submit" value="Add To Starred List"/>
   </form>
-  
-  <form method="post" action="../profile/addstar/<%= user.id %>">
-    <input type="submit" value="Add To Starred List"/>
-  </form>
-  
+</div>
 <% }  %>
 
-<ul class="profile-list">
-<li>Location: <%= user.city.name  %></li>
+<!-- <ul class="profile-list"> -->
+<p><b>Location:</b> <%= user.city.name  %></p>
 
 
 
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
-  <li>Instrument(s):</li> 
+  <p><b>Instrument(s):</b></p> 
         <ul>
         <% user.instruments.forEach(function(instrument) { %>
           <li><%= `${instrument.name}`  %></li>
@@ -44,7 +42,7 @@
 
 
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
-  <li>Available For:</li> 
+  <p><b>Available For:</b></p>
         <ul>
         <% user.collaborations.forEach(function(collaboration) { %>
           <li><%= `${collaboration.type}`  %></li>
@@ -52,7 +50,8 @@
         </ul>
 
         <% if (user.genres && user.genres.length > 1) { %>
-          <li>Genres:</li> 
+          <!-- <li>Genres:</li>  -->
+          <p><b>Genres:</b></p>
             <ul>
             <% user.genres.forEach(function(genre) { %>
               <li><%= `${genre.name}`  %></li>
@@ -60,13 +59,21 @@
             </ul>
         <% } else {} %>  
 
-    <% if (user.influences && user.influences.length > 1) { %>    
-    <li>Influences: <%= user.influences.join(", ") %> </li>
-    <% } %> 
+    <!-- % if (user.influences && user.influences.length > 1) { %>    
+      <p><b>Influences: </b>%= user.influences.join(", ") %></p> 
+    s% } %>  -->
     
+    <% if (user.influences && user.influences.length > 1) { %>
+      <p><b>Influences: </b></p>
+        <ul>
+        <% user.influences.forEach(function(influence) { %>
+          <li><%= `${influence}`  %></li>
+        <% }) %> 
+        </ul>
+    <% } else {} %>  
     
     <% if (user.recordingCredits && user.recordingCredits.length > 1) { %>
-      <li>Recording Credits:</li> 
+      <p><b>Recording Credits: </b></p>
         <ul>
         <% user.recordingCredits.forEach(function(credit) { %>
           <li><%= `${credit}`  %></li>
@@ -76,20 +83,19 @@
 
 
     <% if (user.spotifyEmbedUrl || user.soundcloudEmbedUrl) { %>
-      <li>HEAR:</li>
+      <p><b>Listen: </b></p>
     <% } else {} %>   
       <% if (user.spotifyEmbedUrl) { %>
-        <li>
+
           <iframe src="<%= user.spotifyEmbedUrl %>" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </li>
       <% } else {} %> 
       <% if (user.soundcloudEmbedUrl) { %>
-        <li>
+        
           <iframe width="400" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/400318689&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a>  <a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a></div>
-        </li>
+        
       <% } else {} %> 
       <% if (user.youtubeEmbedUrl) { %>  
-        <li>WATCH:</li>
+        <p><b>Watch: </b></p>
         <iframe width="560" height="315" src="<%= user.youtubeEmbedUrl %> " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <br>
       <% } else {} %> 
@@ -100,16 +106,32 @@
       <% } %>   
   </ul>
   <% if (testimonials) { %>
-    <h1>Testimonials</h1>
+    <h2>Testimonials</h2>
       
       <% testimonials.forEach(function(testimonial) { %>
-      <ul>
-        <li>From: <a href="/profile/<%=testimonial.sender.id %>"><%= testimonial.sender.name %></a></li>
-        <li><%= `${testimonial.content}`  %></li>
-        <li><%= `${testimonial.createdAt}`  %></li>
-      </ul>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+    
+            <img class="rounded-circle profile-photo-small" src="<%= testimonial.sender.profilePhotoUrl %> " alt="<%= testimonial.sender.name %> profile photo">
+            <h5 class="message-from my-auto">From: &nbsp;   <a href="/profile/<%=testimonial.sender.id %>"><%= testimonial.sender.name %></a></h5>   
+            <p class="date my-auto ml-auto"><%= dateFormat(testimonial.createdAt, "dddd, mmmm dS, yyyy, h:MM TT"); %> </p> 
+    
+          </div>
+            
+        
+        <p class="card-content"><%= `${testimonial.content}`  %></p>
+    </div>
+    </div>
       <% }) %> 
 
-  <% } else {} %>  
+
+
+    
+
+<% } else {} %>  
+  <form class="btn-form" method="get" action="../profile/testimonial/<%= user.id %>">
+    <input class="btn btn-secondary" type="submit" value="Leave <%= user.name %> A Testimonial" />
+  </form>
 </div>
 </div>

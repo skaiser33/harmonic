@@ -22,7 +22,7 @@ router.post('/signup', (req, res) => {
       // FLASH
       passport.authenticate('local', {
         successRedirect: `/profile/new/${user.id}`,
-        successFlash: 'Account created and logged in'
+        // successFlash: 'Account created and logged in'
       })(req, res);
     } else {
       // FLASH
@@ -45,7 +45,7 @@ router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/auth/login',
   failureFlash: 'Invalid username and/or password',
-  successFlash: 'You have logged in!',
+  // successFlash: 'You have logged in!',
 }), 
 (req, res) => {
   db.user.update({

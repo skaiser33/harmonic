@@ -1,11 +1,11 @@
 <div class="container">
   <h2>Search For Your Next Collaborator</h2>
-  <form action="/search/index/" method="GET">
+  <form class="search-form" action="/search/index/" method="GET">
 
   
 
   <% if (currentUser.isBand === false) {%>    
-    <h3>I am looking for...</h3>  
+    <h3 class="form-header">I am looking for...</h3>  
   <div class="form-check form-check-inline">      
     <input class="form-check-input" type="radio" name="isBand" id="isBand1" value=false checked>
     <label class="form-check-label" for="isBand1">a musician</label>
@@ -20,10 +20,12 @@
 
 
   <!-- TODO: If "Other" selected, present text input and add value to db -->
+  <br><br>
+  
   <div class="form-group">
     <label for="city">IN THE CITY OF:</label>
     <select class="form-control" id="city" name="city">
-      <option disabled selected value> -- Choose Your City -- </option>
+      <option disabled selected value> -- Choose City -- </option>
       <% cities.forEach(function(city) { %>
       <option value="<%=city.id %>"><%=city.name %></option>
       <% }) %> 
@@ -36,7 +38,7 @@
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
   <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
-    <p>WHO PLAYS:</p>
+    <p class="tiny-margin">WHO PLAYS:</p>
     <small id="instrumentsHelpBlock" class="form-text text-muted">
       Required. Select all that apply.
     </small>
@@ -50,7 +52,7 @@
 
   <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
-    <p>AND IS AVAILABLE FOR:</p>
+    <p class="tiny-margin">AND IS AVAILABLE FOR:</p>
     <small id="collaborationsHelpBlock" class="form-text text-muted">
       Required. Select all that apply.
     </small>
@@ -67,7 +69,7 @@
   
   <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
-    <p>HIS OR HER PREFERRED GENRE(S) SHOULD BE:</p>    
+    <p class="tiny-margin">PREFERRED GENRE(S) SHOULD INCLUDE:</p>    
     <small id="genresHelpBlock" class="form-text text-muted">
       Select all that apply.
     </small>
@@ -77,10 +79,10 @@
         <label class="form-check-label" for="<%= genre.name %>"><%= genre.name %> </label>
       </div>
     <% }) %> 
-      <div class="form-check form-check-inline">
+      <!-- <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="other">
         <label class="form-check-label" for="inlineCheckbox3">Other</label>
-        <input id="genres" type="text" name="genres">
+        <input id="genres" type="text" name="genres"> -->
       </div>  
     
   <!-- <div class="form-group">
@@ -92,7 +94,7 @@
   </div> -->
 
     
-    <input type="submit" class="btn btn-primary" value="SEARCH">
+    <input type="submit" class="btn btn-secondary" value="SEARCH">
   </div>
 </form>
 </div>

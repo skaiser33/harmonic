@@ -267,7 +267,7 @@ module.exports = {
         isBand: false,
         profilePhotoUrl: "https://i.imgur.com/0AOLXon.jpg",
         influences: ["Tony Williams", "John Bonham"],
-        recordingCredits: ["Zeitgeist - Smashing Pumpkins - 2007 - Vocals, Guitars, SongwriterDrums", "Honor - Jimmy Chamberlin Complex - 2020 - Drums, Composer"],
+        recordingCredits: ["Zeitgeist - Smashing Pumpkins - 2007 - Drums", "Honor - Jimmy Chamberlin Complex - 2020 - Drums, Composer"],
         spotifyEmbedUrl: "https://open.spotify.com/embed/track/27Hf6yJq9gQvx6b8m25Ddi",
         soundcloudEmbedUrl: null,
         youtubeEmbedUrl: "https://www.youtube.com/embed/Qx6Uv1BYdvw",

@@ -150,7 +150,8 @@ router.post('/edit/:id', async (req, res) => {
     req.flash('success', "Profile updated!")
     res.redirect(`/profile/${req.params.id}`)
   } catch (error) {
-    req.flash('error', error.message)
+    // req.flash('error', error.message)
+    req.flash('error', "PLEASE COMPLETE ALL REQUIRED FIELDS.")
     res.redirect(`/profile/edit/${req.params.id}`)
   }	 
 });
@@ -302,7 +303,8 @@ router.get('/testimonial/:id', async (req, res) => {
     res.render('profile/testimonial', {user: foundUser})
 
   } catch (error) {
-    req.flash('error', error.message)
+    // req.flash('error', error.message)
+    req.flash('error', "PLEASE COMPLETE ALL REQUIRED FIELDS.")
     res.redirect(`/profile/${req.params.id}`)
   }	 
 });
@@ -344,7 +346,7 @@ router.get('/:id', async (req, res) => {
     include: [db.city, db.instrument, db.genre, db.collaboration]
   })
     // console.log(user.collaborations);
-    res.render('profile/profile', {user: foundUser, testimonials: foundTestimonials})
+    res.render('profile/profile', {user: foundUser, testimonials: foundTestimonials, dateFormat: dateFormat})
 
 })
 

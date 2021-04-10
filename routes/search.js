@@ -128,7 +128,8 @@ router.get('/index', async (req, res) => {
     res.render('search/index', {users: filteredUsers, storedSearchString: storedSearchString, storedSearchObject: storedSearchObject} )
     // res.render('search/index', {users: filteredUsers})
   } catch (error) {
-    req.flash('error', error.message)
+    // req.flash('error', error.message)
+    req.flash('error', "PLEASE COMPLETE ALL REQUIRED FIELDS.")
     res.redirect(`/search`)
   }
 })
