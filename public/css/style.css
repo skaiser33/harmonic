@@ -16,6 +16,7 @@ ANYTHING?  font-family: 'New Tegomin', serif;*/
 body {
   display: flex;
   min-height: 100vh;
+  max-width: 100%;
   flex-direction: column;
   font-family: var(--main-font);
   color: var(--red);
@@ -43,6 +44,7 @@ nav ul li {
 }
 
 .navbar {
+  max-width: 100vw;
   border-bottom: 3px solid var(--red);
   margin-bottom: 20px;
 } 
@@ -65,7 +67,7 @@ nav ul li {
 }
 
 .nav-link {
-  font-size: .8em;
+  font-size: .2em;
 }
 
 .navbar-toggler {
@@ -90,6 +92,8 @@ iframe, .profile-photo-main, .carousel {
 
 .profile-photo-small {
   border: 1px solid var(--red);
+  min-width: 60px;
+  max-width: 60px;
 }
 
 /* FORMS */
@@ -306,8 +310,9 @@ a:hover {
 .carousel-text {
   margin: 0 auto;
   background-color: rgb(10, 10, 10, .5);
-  max-width: 30%;
+  max-width: 35%;
   border-radius: 5%;
+  padding: 3px;
 }
 
 /* .center {
@@ -350,6 +355,13 @@ Bootstrap 4 breakpoints
   .navbar-brand { 
     font-size: 1.8em;
   }
+  .nav-link {
+    font-size: .2em;
+  }
+  .profile-photo-small {
+    min-width: 80px;
+    max-width: 80px;
+  }
   h1 {
     font-size: 4em;
   } 
@@ -362,7 +374,8 @@ Bootstrap 4 breakpoints
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {  
   .nav-link {
-    text-align: center;   
+    text-align: center;  
+    font-size: .5em; 
   }
 
   .navbar-brand { 
@@ -384,7 +397,7 @@ Bootstrap 4 breakpoints
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
   .nav-link {
-    font-size: 1em;
+    font-size: .8em;
   }
   h4 {
     font-size: 2em;
@@ -397,6 +410,10 @@ Bootstrap 4 breakpoints
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   /* h1 {font-size:5rem;}    */
+  .nav-link {
+    font-size: .9em;
+    margin: 0 15px;
+  }
 }
 
 /* Set width to make card deck cards 100% width */

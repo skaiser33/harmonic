@@ -6,11 +6,15 @@
     <h1>YOUR MESSAGES</h1>
       
       <% messages.forEach(function(message) { %>
+        <div class="card">
+          <div class="card-body">
       <ul>
         <li>From: <a href="/profile/<%=message.sender.id %>"><%= message.sender.name %></a></li>
         <li><%= `${message.content}`  %></li>
         <li><%= `${message.createdAt}`  %></li>
       </ul>
+    </div>
+  </div>
       <% }) %> 
 
   <% } else {} %>  
