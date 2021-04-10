@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const dateFormat = require('dateformat');
 
 
 //GET NEW MESSAGE FORM
@@ -51,7 +52,7 @@ router.get('/:id', async (req, res) => {
           ],
           order: [['createdAt', 'DESC']]
       })
-      res.render('messages/index', {messages: foundMessages})
+      res.render('messages/index', {messages: foundMessages, dateFormat: dateFormat})
 
   } catch (error) {
       req.flash('error', error.message)

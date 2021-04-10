@@ -49,13 +49,6 @@ nav ul li {
   margin-bottom: 20px;
 } 
 
-/* ul {
-  list-style-type: none;
-} */
-
-
-
-
 .navbar-nav > li{
   margin-left: 10px;
   margin-right: 10px;
@@ -93,7 +86,9 @@ iframe, .profile-photo-main, .carousel {
 .profile-photo-small {
   border: 1px solid var(--red);
   min-width: 60px;
+  min-height: 60px;
   max-width: 60px;
+  max-height: 60px;
 }
 
 /* FORMS */
@@ -129,9 +124,10 @@ h4 {
   font-size: .75em;
 }
 
-/* h5 {
-  white-space: pre;
-}  */
+h5 {
+  padding: 5px;
+  font-size:.8em;
+} 
 
 
 /* footer {
@@ -172,20 +168,38 @@ input {
 /* CARDS */
 
 .card{
-  border: 5px solid var(--red);
+  /* border: 5px solid var(--red); */
+  border: 2px solid white;
   margin-top: 2%;
 }
 
+
 .card-body {
-  background-color: black;
-  color: rgb(167, 4, 4, .4);
+  padding: 20px 40px;
+  background-color: rgb(20, 20, 20, .8);
+  color: var(--red);
+  color: white;
 }
 
-.search-title {
+.card-content {
+  font-size: 1.1em;
+}
+
+.date {
+  font-size: .8em;
+  font-style: italic;
+  margin: 5px;
+}
+
+.row {
+  margin: 0 -5px 5px -5px;
+}
+
+/* .search-title {
   font-size: 40px;
   color: white;
   margin: 0px 10px 2px 20px;
-}
+} */
 
 /* .cities-anchor {
   font-size: 30px;
@@ -214,18 +228,30 @@ input {
 
 /* BUTTONS and LINKS */
 
+a {
+  color: var(--red);
+  font-size: 1.1em;
+}
+
 a:hover {
-  color:rgb(171, 218, 247);
+  color:rgb(245, 87, 87);
 } /* */
+
+.btn-form {
+  font-size: 1.5em;
+  background-color:  rgb(177, 0, 0, .0);
+  color: white;
+  padding: 0px;
+}
+
 
 .btn {
   font-family: var(--alt-font);
   display:inline-block;
-  margin:10px;
+  margin:5px 0px;
 }
 
-.btn-outline-success {
-  
+/* .btn-outline-success { 
   color:white;
   background-color:transparent;
   border-color:white;
@@ -236,17 +262,17 @@ a:hover {
   color:rgb(16, 100, 247);
   background-color: rgb(150,216,245);
   border-color:white;
-} 
+}  */
 
 .btn-primary {
   color: white;
-  background-color:rgb(16, 100, 247);
-  border:2px solid white;;
+  background-color: rgb(207, 201, 201, 0);
+  border:2px solid var(--red);
 }
 
 .btn-primary:hover {
-  color:rgb(16, 100, 247);
-  background-color: rgb(150,216,245);
+  color:white;
+  background-color: rgb(131, 1, 1, .7);
   border:2px solid white;;
 }
 
@@ -315,6 +341,10 @@ a:hover {
   padding: 3px;
 }
 
+.message-from {
+  margin: 0 10px;
+}
+
 /* .center {
   align-items: center;
 } */
@@ -360,7 +390,9 @@ Bootstrap 4 breakpoints
   }
   .profile-photo-small {
     min-width: 80px;
+    min-height: 80px;
     max-width: 80px;
+    max-height: 80px;
   }
   h1 {
     font-size: 4em;
@@ -389,8 +421,14 @@ Bootstrap 4 breakpoints
   h4 {
     font-size: 1.8em;
   }
+  h5 {
+    font-size: 1.2em;
+  }
   .tagline {
     font-size: .8em;
+  }
+  .card-content {
+    font-size: 1.3em;
   }
 }
 
