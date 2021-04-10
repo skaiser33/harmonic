@@ -62,6 +62,7 @@ const upload = multer({
   storage: multerS3({
       s3: s3,
       bucket: 'guitarcollector-sei0119',
+      acl: 'public-read',
       key: function (req, file, cb) {
           console.log(file);
           cb(null, file.originalname); //use Date.now() for unique file keys
@@ -77,15 +78,16 @@ app.get('/', (req, res) => {
 app.post('/upload', upload.array('upl',1), function (req, res, next) {
   res.send("Uploaded!");
 });
+
 // we use the middleware in the middle of our route to the profile (or any other page we want to restrict)
 // app.get('/profile', isLoggedIn, (req, res) => {
 //   res.render('profile');
 // });
 
 app.use('/auth', require('./routes/auth'));
-app.use('/search', require('./routes/search'));
-app.use('/profile', require('./routes/profile'));
-app.use('/search', require('./routes/search'));
+app.use('/search', isLoggedIn, require('./routes/search'));
+app.use('/profile', isLoggedIn, require('./routes/profile'));
+app.use('/messages', isLoggedIn, require('./routes/messages'));
 
 var server = app.listen(process.env.PORT || 3000, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 

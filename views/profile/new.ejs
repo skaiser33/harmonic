@@ -1,6 +1,6 @@
 <div class="container">
   <h1>SET UP YOUR PROFILE</h1>
-  <form action="/profile/new/<%= user.id %>" method="POST">
+  <form action="/profile/new/<%= user.id %>" method="POST"  novalidate>
 
 
   <!-- <h1 class="hide" id="toggle-test">TOGGLE TEST</h1>  
@@ -17,22 +17,34 @@
 
   <div class="form-group">
     <label for="name">Name</label>
-    <input id="name" class="form-control" type="text" placeholder="Name" name="name">
+    <input id="name" class="form-control needs-validation" type="text" placeholder="Name" name="name" required>
     <small id="nameHelpBlock" class="form-text text-muted">
       Required.
     </small>
+    <!-- <div class="valid-feedback">
+      Looks good!
+    </div> -->
+    <div class="invalid-feedback">
+      Please enter your name.
+    </div>
   </div>
 
   <!-- TODO: If "Other" selected, present text input and add value to db -->
   <div class="form-group">
     <label for="city">City</label>
-    <select class="form-control" id="city" name="city">
+    <select class="form-control" id="city" name="city" required>
       <option disabled selected value> -- Choose Your City -- </option>
       <% cities.forEach(function(city) { %>
       <option> <%=city.name %></option>
       <% }) %> 
       <option>Other</option>
     </select>
+    <!-- <div class="valid-feedback">
+      Looks good!
+    </div> -->
+    <div class="invalid-feedback">
+      Please choose your city.
+    </div>
     <small id="cityHelpBlock" class="form-text text-muted">
       Required.
     </small>
@@ -41,7 +53,7 @@
 
   <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
   <!-- TODO: If "Other" selected, present text input and add value to db -->
-  <div class="form-group">
+  <div class="form-group" required>
     <% if (user.isBand === false) {%> 
       <p> Instruments You Play</p>
     <% } else { %> 
@@ -60,7 +72,13 @@
       <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="other">
       <label class="form-check-label" for="inlineCheckbox3">Other</label>
       <input id="instruments" type="text" name="instruments">
-    </div>    
+    </div>  
+    <!-- <div class="valid-feedback">
+      Looks good!
+    </div> -->
+    <div class="invalid-feedback">
+      Please choose at least one instrument.
+    </div>  
   </div>
 
   <!-- TODO: If "Other" selected, present text input and add value to db -->
@@ -159,4 +177,3 @@ Close To The Edge - Yes - 1972 - Keyboards/Organ" name="recordingCredits" rows="
 </div>
 <!-- add profile photo here or wait to do that later? -->
 
-<!-- TODO: Form validation (required fields, input type) -->

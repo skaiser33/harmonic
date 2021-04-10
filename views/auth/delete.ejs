@@ -1,0 +1,18 @@
+<li><a class="back-to-profile-btn" href="../profile">return to Account Settings</a></li>
+
+<div class="main-container">
+  <main>
+    <div class="acct-container">
+      <h2 id="delete-subheading"  class="acct subheading">Delete Account</h2>
+      <div id="delete-container" class="delete-acct-container" >
+        <form class="acct-form" action="/auth/delete" method="POST">
+          <label for="password">Enter your password:</label>
+          <input class="pswd-input" id="password" type="password" name="password">
+          <br><br>
+          <span>This is your last chance to turn back.</span>
+          <input class="btn-pswd btn-delete-acct" type="submit" value="DELETE ACCOUNT PERMANENTLY.">
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

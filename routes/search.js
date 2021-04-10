@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Sequelize = require('sequelize');
 // const { and } = require('sequelize/types/lib/operators');
-// const { and } = require('sequelize/types/lib/operators');
-// const Op = Sequelize.Op;
+// const { not } = require('sequelize/types/lib/operators');
+const Op = Sequelize.Op;
 const db = require('../models');
 
 
@@ -65,8 +65,9 @@ router.get('/index', async (req, res) => {
 
       where: {
         isBand: req.query.isBand,
-        cityId: req.query.city
-        // influences: (%___%): split(",")
+        cityId: req.query.city,
+        // influences: (%___%): req.query.influences.split(","), 
+        [Op.not]: [{ id: req.user.id }],
       },
       order: [['name', 'ASC']]
     })

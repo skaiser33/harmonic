@@ -163,3 +163,25 @@ Close To The Edge - Yes - 1972 - Keyboards/Organ" name="recordingCredits" rows="
 <!-- add profile photo here or wait to do that later? -->
 
 <!-- TODO: Form validation (required fields, input type) -->
+
+  <div class="acct-container">
+    <h2 class="acct subheading">Account Settings</h2>
+    <div class="pswd-container">
+      <h3>Modify My Password</h3>
+      <form class="acct-form" action="/auth/changepw" method="POST">
+        <label for="old-password">Enter current password:</label>
+        <input class="pswd-input" id="old-password" type="password" name="oldpassword">
+        <br><br>
+        <label for="updated-password">Enter new password:</label>
+        <input class="pswd-input" id="updated-password" type="password" name="updatedpassword">
+        <br><br>
+        <input class="btn-pswd" type="submit" value="Update Password">
+      </form>
+    </div>   
+    <!-- <div class="delete-acct-container" >
+      <h3>Delete My Account</h3>
+      <form method="GET" action="/auth/delete">
+        <button class="btn-delete-acct" id="btn-delete" class="btn btn-primary" type="submit">Delete delete delete.</button>
+      </form>
+    </div>
+  </div> -->

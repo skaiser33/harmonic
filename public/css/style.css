@@ -238,6 +238,11 @@ a:hover {
   display: none;
 }
 
+.invalid-feedback {
+  font-size: 1.8em;
+  color: red;
+}
+
 /*
 ####################################################
 M E D I A  Q U E R I E S

@@ -5,14 +5,7 @@ const db = require('../models');
 
 //GET FAVORITES/STARRED PROFILES
 router.get('/starred', async (req, res) => {
-  try {
-        // const starredUsers = await db.user.findAll({    
-    //   include: [
-    //     { model: db.favorites,
-    //       as: 'favoriter',  
-    //     }],  
-    //   order: [['name', 'ASC']]
-    // }) 
+  try { 
     let starredUsers = []
     const foundFavorites = await db.favorites.findAll({
       where: {favoriterId: req.user.id},
@@ -99,8 +92,8 @@ router.post('/edit/:id', async (req, res) => {
     const updatedUser = await db.user.update({
       isBand: req.body.isBand,
       name: req.body.name,       
-      influences: [req.body.influences],
-      recordingCredits: [req.body.recordingCredits],
+      influences: req.body.influences.split(','), //[req.body.influences],
+      recordingCredits: req.body.recordingCredits.split(','),
       spotifyEmbedUrl: req.body.spotifyEmbedUrl,
       soundcloudEmbedUrl: req.body.soundcloudEmbedUrl,
       youtubeEmbedUrl: req.body.youtubeEmbedUrl,
@@ -237,8 +230,8 @@ router.post('/new/:id', async (req, res) => {
     const updatedUser = await db.user.update({
       
       name: req.body.name,       
-      influences: [req.body.influences],
-      recordingCredits: [req.body.recordingCredits],
+      influences: req.body.influences.split(','), //[req.body.influences],
+      recordingCredits: req.body.recordingCredits.split(','),
       spotifyEmbedUrl: req.body.spotifyEmbedUrl,
       soundcloudEmbedUrl: req.body.soundcloudEmbedUrl,
       youtubeEmbedUrl: req.body.youtubeEmbedUrl,
