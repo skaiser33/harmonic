@@ -19,6 +19,10 @@
     <input type="submit" value="Message <%= user.name %>" />
   </form>
   
+  <form method="get" action="../profile/testimonial/<%= user.id %>">
+    <input type="submit" value="Leave <%= user.name %> A Testimonial" />
+  </form>
+  
   <form method="post" action="../profile/addstar/<%= user.id %>">
     <input type="submit" value="Add To Starred List"/>
   </form>
@@ -95,4 +99,17 @@
       <% } else { %> 
       <% } %>   
   </ul>
+  <% if (testimonials) { %>
+    <h1>Testimonials</h1>
+      
+      <% testimonials.forEach(function(testimonial) { %>
+      <ul>
+        <li>From: <a href="/profile/<%=testimonial.sender.id %>"><%= testimonial.sender.name %></a></li>
+        <li><%= `${testimonial.content}`  %></li>
+        <li><%= `${testimonial.createdAt}`  %></li>
+      </ul>
+      <% }) %> 
+
+  <% } else {} %>  
+</div>
 </div>

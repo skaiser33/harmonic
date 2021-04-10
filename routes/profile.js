@@ -292,16 +292,59 @@ router.post('/new/:id', async (req, res) => {
   }	 
 });
 
+//GET TESTIMONIAL FORM
+router.get('/testimonial/:id', async (req, res) => {
+  try {
+    const foundUser = await db.user.findOne({    
+      where: {id: req.params.id}
+    })
+    res.render('profile/testimonial', {user: foundUser})
+
+  } catch (error) {
+    req.flash('error', error.message)
+    res.redirect(`/profile/${req.params.id}`)
+  }	 
+});
+
+//POST NEW TESTIMONIAL
+router.post('/testimonial/:id', async (req, res) => {
+  try {
+    const createdTestimonial = await db.testimonial.create({
+      recipientId: req.params.id, 
+      senderId: req.user.id,  //or currentUser.id?
+      content: req.body.content
+      })
+      console.log("*********", createdTestimonial);
+      res.redirect(`/profile/${req.params.id}`)
+
+  } catch (error) {
+      req.flash('error', error.testimonial)
+      res.redirect(`/profile/${req.params.id}`)
+  }	 
+});
+
 
 //GET PROFILE BY USER ID
-router.get('/:id', (req, res) => {
-  db.user.findOne({    
+router.get('/:id', async (req, res) => {
+  const foundTestimonials = await db.testimonial.findAll({
+    where: { recipientId: req.params.id }, 
+    
+      include: [
+          { model: db.user,
+             as: 'sender',
+          // where: { recipientId: req.params.id },
+          },
+        ],
+        order: [['createdAt', 'DESC']]
+    })
+
+  const foundUser = await db.user.findOne({    
     where: {id: req.params.id},
     include: [db.city, db.instrument, db.genre, db.collaboration]
-  }).then((foundUser) => {
-    // console.log(user.collaborations);
-    res.render('profile/profile', {user: foundUser})
   })
+    // console.log(user.collaborations);
+    res.render('profile/profile', {user: foundUser, testimonials: foundTestimonials})
+
 })
 
 module.exports = router;

@@ -1041,6 +1041,28 @@ module.exports = {
     console.log(bulkMessages);
 
 
+    //testimonial SEED
+    await queryInterface.bulkDelete('testimonials', null, {truncate: true, cascade: true, restartIdentity: true});    
+
+    const bulkTestimonials = await queryInterface.bulkInsert('testimonials', [
+      { senderId: 1,
+        recipientId: 2,
+        content: "Hands down the greatest drummer who ever lived. That snare and hi-hat work blows my mind.",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      { senderId: 4,
+        recipientId: 2,
+        content: "Jimmy can hold it down better than any drum machine.",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      
+      ], { returning: true });
+
+    console.log(bulkTestimonials);
+
+
     //SEARCH SEED
     await queryInterface.bulkDelete('searches', null, {truncate: true, cascade: true, restartIdentity: true});    
 
