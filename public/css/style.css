@@ -123,12 +123,12 @@ iframe, .profile-photo-main, .carousel {
 }
 
 .profile-photo-main {
+  display: none ;
   margin: 10px 50px;
-  -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));  
-  min-width: 100px;
-  min-height: 100px;
-  max-width: 100px;
-  max-height: 100px;
+  min-width: 80px;
+  min-height: 80px;
+  max-width: 80px;
+  max-height: 80px;
 }
 
 .profile-photo-small {
@@ -287,13 +287,17 @@ a:hover {
   padding: 0px;
   border: none;
   margin-right: 10px;
+  margin-top: 10px;
 }
 
 .btn {
   font-family: var(--alt-font);
   display:inline-block;
   margin:5px 0px;
+  font-size: .6em;
 }
+
+
 
 /* .btn-outline-success { 
   color:white;
@@ -409,22 +413,25 @@ a:hover {
 
 .profile-container {
   /* padding: 10px; */
+  max-width: 95%;
   background-color: rgb(19, 19, 19, .5);
-  font-size: 1.3em;
   background-color:  rgb(177, 0, 0, .6);
   color: white;
-  padding: 30px;
   border: 2px solid white;
   border-radius: 20px;
+  padding: 30px;
+  font-size: .8em;
 }
 
-.profile-container > p {
+/* .profile-container > p {
   font-size: 2em;
-}  
+}   */
 
-.profile-title {
-  margin-bottom: -45px;
-}
+
+
+/* .profile-title > h2 {
+  font-size: 1em;
+} */
 
 li {
   font-size: 1.5em;
@@ -489,6 +496,8 @@ Bootstrap 4 breakpoints
     font-size: 3em;
     margin: 60px 0 0 0px ;
   }
+
+  
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -505,6 +514,10 @@ Bootstrap 4 breakpoints
   h1 {
     font-size: 5em;
   } 
+
+  h2 {
+    font-size: 2em;
+  }
 
   h4 {
     font-size: 1.8em;
@@ -530,15 +543,41 @@ Bootstrap 4 breakpoints
   .form-header {
     font-size: 1.6em;
   }
+  .profile-container {
+    padding: 30px;
+    font-size: 1em;
+  }
 
   .profile-photo-main {
-    margin: 10px 50px;
-    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));  
-    min-width: 200px;
-    min-height: 200px;
-    max-width: 200px;
-    max-height: 200px;
+    display: inline;
+    margin: 10px 50px 10px 10px;
+    /* -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));   */
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 150px;
+    max-height: 150px;
   }
+
+  .btn {
+    font-size: .7em;
+  }
+
+  .spotify {
+    width: 400px;
+    height: 80px;
+  }
+
+  .soundcloud {
+    width: 400px;
+    height: 166px;
+  }
+
+  .youtube {
+    width: 560px;
+    height: 315px;
+  }
+
+
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -556,6 +595,26 @@ Bootstrap 4 breakpoints
   .tagline {
     font-size: 1em;
   }
+
+  .profile-container {
+    padding: 30px;
+    font-size: 1.2em;
+  }
+  .btn {
+    font-size: .8em;
+  }
+
+  .profile-photo-main {
+    /* display: inline; */
+    margin: 10px 50px 10px 10px;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));  
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -564,6 +623,9 @@ Bootstrap 4 breakpoints
   .nav-link {
     font-size: .9em;
     margin: 0 15px;
+  }
+  .profile-title {
+    margin-bottom: -35px;
   }
 }
 

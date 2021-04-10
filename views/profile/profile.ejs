@@ -3,8 +3,7 @@
     <h2 class=""><%= user.name  %></h2>
     <img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image">
   </div>
-<p class="date">Joined Harmonic on <%= dateFormat(user.createdAt, "mmm dS, yyyy"); %> </p>
-<p class="date">Last Active on <%= dateFormat(user.lastActive, "mmm dS, yyyy"); %> </p>
+
 <!-- <p>Last Active on <%= user.lastActive %> </p> -->
 <!-- if (user.id === req.user.id) -->
   <!-- add edit functionality -->
@@ -26,7 +25,8 @@
   </form>
 </div>
 <% }  %>
-
+<small>Joined Harmonic on <%= dateFormat(user.createdAt, "mmm dS, yyyy"); %> </small><br>
+<small >Last Active on <%= dateFormat(user.lastActive, "mmm dS, yyyy"); %> </small>
 <!-- <ul class="profile-list"> -->
 <p><b>Location:</b> <%= user.city.name  %></p>
 
@@ -87,16 +87,19 @@
     <% } else {} %>   
       <% if (user.spotifyEmbedUrl) { %>
 
-          <iframe src="<%= user.spotifyEmbedUrl %>" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe class="spotify" src="<%= user.spotifyEmbedUrl %>"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <br><br>
       <% } else {} %> 
       <% if (user.soundcloudEmbedUrl) { %>
         
-          <iframe width="400" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/400318689&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a>  <a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a></div>
+          <!-- <iframe class="soundcloud" width="400" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/400318689&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a>  <a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a></div> -->
+          <iframe class="soundcloud" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/400318689&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a>  <a href="#" title="" target="_blank" style="color: #cccccc; text-decoration: none;"></a></div>
         
       <% } else {} %> 
       <% if (user.youtubeEmbedUrl) { %>  
         <p><b>Watch: </b></p>
-        <iframe width="560" height="315" src="<%= user.youtubeEmbedUrl %> " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- <iframe class="youtube" width="560" height="315" src="<%= user.youtubeEmbedUrl %> " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        <iframe class="youtube"  src="<%= user.youtubeEmbedUrl %> " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <br>
       <% } else {} %> 
       <% if (user.localDraw && user.nationalDraw) { %> 
