@@ -54,10 +54,10 @@
  
       <% } else { %>
         <li class="nav-item">
-          <a class="nav-link" href="/auth/signup">Signup</a>
+          <a class="nav-link" data-toggle="modal" href="#signupModal">Signup</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/auth/login">Login</a>
+          <a class="nav-link"  data-toggle="modal" href="#loginModal">Login</a>
         </li>
         <% }  %>
     </ul>
@@ -70,4 +70,98 @@
       <li><a href="/auth/logout">Logout</a></li>
       <li><a href="/profile">Profile</a></li>
   </ul> -->
+  
 </nav>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">LOGIN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form class="form-modal" action="/auth/login" method="POST">
+            <div class="form-group">
+              <div class="d-flex flex-column">
+              <label for="auth-email">Email</label>
+              <input id="auth-email" type="email" name="email" placeholder="name@example.com">
+            </div>  
+            </div>  
+            <div class="form-group">
+              <div class="d-flex flex-column">
+              <label for="auth-password">Password</label>
+              <input id="auth-password" type="password" name="password" placeholder="Password">
+            </div>  
+            </div>  
+            <div class="form-group">
+              <input class="btn btn-primary" type="submit" value="LOG IN">
+            </div> 
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalLabel">signup</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form class="form-modal" action="/auth/signup" method="POST">
+            <div class="form-group">
+              <div class="d-flex flex-column">
+            <label for="new-email">Email</label>
+            <input id="new-email" type="email" name="email" placeholder="Enter email">
+          </div>  
+        </div>  
+        <div class="form-group">
+          <div class="d-flex flex-column">
+            <label for="new-password">Password</label>
+            <input id="new-password" type="password" name="password" placeholder="Create Password">
+          </div>  
+        </div>  
+        <div class="form-group">
+          <div class="d-flex flex-column">
+            <h3>Are you creating an account for...?</h3>
+        
+            <div class="form-check form-check-inline">      
+              <input class="form-check-input" type="radio" name="isBand" id="isBand1" value=false checked>
+              <label class="form-check-label" for="isBand1">An Individual Musician</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="isBand" id="isBand2" value=true>
+              <label class="form-check-label" for="isBand2">A Band</label>
+            </div>
+          </div>  
+        </div>  
+            <div class="form-group col-md-4">
+              <input class="btn btn-secondary" type="submit" value="SIGN UP">
+            </div> 
+          </div>  
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div> -->
