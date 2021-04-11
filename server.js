@@ -28,9 +28,7 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
-// app.use(favicon(path.join(__dirname + '/public/assets/favicon.ico')));
 app.use(favicon(path.join(__dirname + '/public/favicon.ico')));
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(layouts);
 //* setup the session with the following:
 app.use(session({
