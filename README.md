@@ -77,6 +77,7 @@ As a user, I want:
 
 
 
+
 ## Screenshots
 
 Home Page
@@ -96,6 +97,7 @@ Search Page
 Messages Page
 
 ![Messages Page](https://i.imgur.com/IEEOVSs.png)
+
 
 
 ## Original Wireframes
