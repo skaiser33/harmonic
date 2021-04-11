@@ -1,7 +1,7 @@
 # Harmonic
 
 ## Deployed At:
-http://harmonic.herokuapp.com
+http://harmonic-sei.herokuapp.com
 
 ## Description
 
