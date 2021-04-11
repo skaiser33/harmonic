@@ -77,7 +77,7 @@ app.get('/about', (req, res) => {
 });
 
 app.post('/upload', upload.array('upl',1), function (req, res, next) {
-  res.send("Uploaded!");
+  res.redirect("/");
 });
 
 app.use('/auth', require('./routes/auth'));
