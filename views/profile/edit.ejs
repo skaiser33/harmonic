@@ -1,6 +1,9 @@
 <div class="container">
   <h1>UPDATE YOUR PROFILE</h1>
   <div class="container">
+    <form class="btn-form" method="get" action="../../profile/<%= user.id %>">
+      <input class="btn btn-primary" type="submit" value="NEVERMIND -- TAKE ME BACK" />
+    </form>
     <form class="search-form" action="../../upload/"  method="POST">
       <img class="rounded-circle profile-photo-main" src="<%= user.profilePhotoUrl %>" alt="profile image" width=200 height=200>
       <div class="form-group ">      

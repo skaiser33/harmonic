@@ -32,7 +32,7 @@ body {
   max-width: 95vw;
 }
 
-h1, h2, h3, h4, h5, h6, .navbar-brand, .nav-link {
+h1, h2, h3, h4, h5, h6, .navbar-brand, .nav-link, .starred-name {
   font-family: var(--title-font);
 }  
 
@@ -371,6 +371,12 @@ a:hover {
   font-size: 1.4em !important;
 }
 
+.btn-info:active {
+  color: var(--red);
+}
+
+
+
 
 /* .btn-danger {
   border:2px solid white;
@@ -445,8 +451,17 @@ a:hover {
 }
 
 .alert, .alert-error {
-  font-size: 1.2em;
+  background-color: black;
+  font-size: 1.4em;
+  border: 1px solid white;
+  text-align: center;
 }
+
+.alert-success {
+  color: white;
+}
+
+
 
 .profile-container {
   /* padding: 10px; */
