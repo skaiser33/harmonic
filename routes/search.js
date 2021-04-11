@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Sequelize = require('sequelize');
-// const { and } = require('sequelize/types/lib/operators');
-// const { not } = require('sequelize/types/lib/operators');
 const Op = Sequelize.Op;
 const db = require('../models');
 const dateFormat = require('dateformat');
 
-
-// router.get('/saved/:id', (req, res) => {
-//   res.render("/")
-// });
 
 //GET MAIN SEARCH FORM
 router.get('/', (req, res) => {
@@ -21,40 +15,34 @@ router.get('/', (req, res) => {
       db.collaboration.findAll()
       .then((collaborations) => {
         db.city.findAll()
-        .then((cities) => {
-          // DO I NEED THE USER?
-          // db.user.findOne({    
-          //   where: {id: currentUser.id},         
-          // }).then((user) => {
+        .then((cities) => {    
           res.render('search/main', {user: req.user, instruments: instruments, genres: genres, cities: cities, collaborations: collaborations})
-          // })
         })
       })
     })
   })
 })
 
+
 //POST TO MAIN SEARCH FORM TO MODIFY
 router.post('/', (req, res) => {
   localStorage.setItem("name", "tony");
   res.redirect('/')
-
 })
 
 
-//GET INDEX OF SEARCH RESULTS
+//GET INDEX OF SEARCH RESULTS (to be refactored)
 router.get('/index', async (req, res) => {
   try {
+    let filteredUsers = [], checkedGenres = [], checkedInstruments = [], checkedCollaborations = []    
+    let storedSearchObject = req.query
+    let storedSearchString = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&');
 
     function doesArrayInclude(arr, target){
       return arr.every(value => target.includes(value));
     }
 
-    let filteredUsers = [], checkedGenres = [], checkedInstruments = [], checkedCollaborations = []
     
-    let storedSearchObject = req.query
-    let storedSearchString = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&');
-
     typeof (req.query.genreCheck) === "string" ? checkedGenres = [req.query.genreCheck] : checkedGenres = req.query.genreCheck
 
     typeof (req.query.collaborationCheck) === "string" ? checkedCollaborations = [req.query.collaborationCheck] : checkedCollaborations = req.query.collaborationCheck
@@ -63,11 +51,9 @@ router.get('/index', async (req, res) => {
     
     foundUsers = await db.user.findAll({
       include: [db.instrument, db.collaboration, db.genre],
-
       where: {
         isBand: req.query.isBand,
         cityId: req.query.city,
-        // influences: (%___%): req.query.influences.split(","), 
         [Op.not]: [{ id: req.user.id }],
       },
       order: [['name', 'ASC']]
@@ -113,22 +99,9 @@ router.get('/index', async (req, res) => {
         filteredUsers.push(foundUser)
       }
       
-      // console.log("***************userGenres", userGenres);
-      // console.log("***************checkedGenres", checkedGenres);
-      // console.log("***************genreMatch", genreMatch);
-      // console.log("***************userCollaborations", userCollaborations);
-      // console.log("***************checkedCollaborations", checkedCollaborations);
-      // console.log("***************collaborationMatch", collaborationMatch);
-      // console.log("***************userInstruments", userInstruments);
-      // console.log("***************checkedInstruments", checkedInstruments);
-      // console.log("***************instrumentMatch", instrumentMatch);
     })  
-    // console.log("***************filteredusers", filteredUsers);
-    console.log("***************query", req.query);
     res.render('search/index', {users: filteredUsers, storedSearchString: storedSearchString, storedSearchObject: storedSearchObject} )
-    // res.render('search/index', {users: filteredUsers})
   } catch (error) {
-    // req.flash('error', error.message)
     req.flash('error', "PLEASE COMPLETE ALL REQUIRED FIELDS.")
     res.redirect(`/search`)
   }
@@ -140,22 +113,15 @@ router.get('/saved/:id', async (req, res) => {
   try {
     const foundSearches = await db.search.findAll({
       where: { userId: req.params.id },       
-        // include: [
-        //     { model: db.user,
-        //        as: 'sender',
-        //     // where: { recipientId: req.params.id },
-        //     },
-        //   ],
-          order: [['createdAt', 'DESC']]
-      })
-      res.render('search/saved', {searches: foundSearches, dateFormat: dateFormat})
-      // res.render('search/saved')
-
+      order: [['createdAt', 'DESC']]
+    })
+    res.render('search/saved', {searches: foundSearches, dateFormat: dateFormat})
   } catch (error) {
-      req.flash('error', error.message)
-      res.redirect(`/`)
+    req.flash('error', error.message)
+    res.redirect(`/`)
   }	 
 });
+
 
 //POST NEW SAVED SEARCH TO USER
 router.post('/savesearch', async (req, res) => {
@@ -165,8 +131,7 @@ router.post('/savesearch', async (req, res) => {
       name: "Your Saved Search",
       content: req.body.storedSearchString
     })
-    // TODO: Toggle Save Search Button if already saved
-    console.log("******content", createdSearch.content);
+    
     req.flash('success', 'Your search has been saved');
     res.redirect(`/search/index/?${createdSearch.content}`);
   } catch (error) {
@@ -175,9 +140,6 @@ router.post('/savesearch', async (req, res) => {
   }	 
 });
 
+
 module.exports = router;
 
-{/* <script>
-    let user = <%- JSON.stringify(user) %>;
-    localStorage.setItem('info', JSON.stringify({'user': user}));
-  </script> */}

@@ -1,6 +1,8 @@
 .env
 node_modules
 package-lock.json
+archived
+notes
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/node

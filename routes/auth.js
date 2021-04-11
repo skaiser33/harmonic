@@ -4,10 +4,12 @@ const passport = require('../config/ppConfig')
 const db = require('../models');
 const bcrypt = require('bcrypt')
 
+//GET SIGNUP FORM
 router.get('/signup', (req, res) => {
   res.render('auth/signup');
 });
 
+//POST NEW USER SIGNUP
 router.post('/signup', (req, res) => {
   db.user.findOrCreate({
     where: { email: req.body.email },
@@ -36,6 +38,7 @@ router.post('/signup', (req, res) => {
   });
 });
 
+//GET LOGIN FORM
 router.get('/login', (req, res) => {
   res.render('auth/login');
 });
@@ -52,10 +55,11 @@ router.post('/login', passport.authenticate('local', {
     lastActive: new Date(), 
     where: {id: req.user.id}
   }).then((user) => {
-    console.log('success');
+    return;
   })
 });
 
+//POST CHANGE USER PW
 router.post('/changepw', function (req, res) {       
   const oldPassword = req.body.oldpassword;
   const updatedPassword = req.body.updatedpassword;
@@ -76,26 +80,7 @@ router.post('/changepw', function (req, res) {
   };
 });
 
-router.get('/delete', (req, res) => {
-  res.render('auth/delete')
-});
-
-router.post('/delete', function (req, res) {
-  const userPassword = req.body.password;
-  if (bcrypt.compareSync(userPassword, req.user.password)) {
-    db.user.destroy({
-      where: { id: req.user.id }
-    }).then(function (db) {   
-      req.logout();
-      req.flash('success', 'You have deleted your account and logged out');
-      res.redirect('/');
-    });
-  } else {
-    req.flash('error','Delete unsuccessful due to incorrect password.');
-    res.redirect('/');
-  };
-});
-
+//LOGOUT USER
 router.get('/logout', (req, res) => {
   // .logut() is added to the req object by passport
   req.logout();

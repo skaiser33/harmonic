@@ -26,9 +26,8 @@ router.post('/new/:id', async (req, res) => {
       recipientId: req.params.id, 
       senderId: req.user.id,  //or currentUser.id?
       content: req.body.content
-      })
-      console.log("*********", createdMessage);
-      res.redirect(`/profile/${req.params.id}`)
+    })
+    res.redirect(`/profile/${req.params.id}`)
 
   } catch (error) {
       req.flash('error', error.message)
@@ -38,21 +37,18 @@ router.post('/new/:id', async (req, res) => {
 
 
 //GET USER MESSAGES
-//TODO: order by createdAt
 router.get('/:id', async (req, res) => {
   try {
     const foundMessages = await db.message.findAll({
-      where: { recipientId: req.params.id }, 
-      
+      where: { recipientId: req.params.id },      
         include: [
-            { model: db.user,
-               as: 'sender',
-            // where: { recipientId: req.params.id },
-            },
-          ],
-          order: [['createdAt', 'DESC']]
-      })
-      res.render('messages/index', {messages: foundMessages, dateFormat: dateFormat})
+          { model: db.user,
+              as: 'sender',
+          },
+        ],
+      order: [['createdAt', 'DESC']]
+    })
+    res.render('messages/index', {messages: foundMessages, dateFormat: dateFormat})
 
   } catch (error) {
       req.flash('error', error.message)
