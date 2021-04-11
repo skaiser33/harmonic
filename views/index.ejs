@@ -54,8 +54,20 @@
   
   <!-- <p class="text-center">Where the Lennon to your McCartney is always a click away.</p> -->
   <div class="container tagline ">
-  <p class="text-center my-auto">WHERE THE <B>LENNON</B> TO YOUR <B>MCCARTNEY</B> IS ONLY A CLICK AWAY</p>
-</div>  
+    <p class="text-center my-auto">WHERE THE <B>LENNON</B> TO YOUR <B>MCCARTNEY</B> IS ONLY A CLICK AWAY</p>
+  </div>  
+  <% if (currentUser) { %>
+    <li class="nav-item my-auto align-text-center">
+      <a class="nav-link" href="/search">NEW SEARCH</a>
+    </li>
+  <% } else { %>
+    <li class="nav-item">
+      <a class="nav-link" href="/auth/signup">Signup</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/auth/login">Login</a>
+    </li>
+    <% }  %>
 </div>
   </div>
 

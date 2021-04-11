@@ -464,6 +464,11 @@ li {
   padding: 0px;
 }
 
+.about-title {
+  /* color: var(--red) */
+  color: rgb(245, 80, 80)
+}
+
 /* .center {
   align-items: center;
 } */
