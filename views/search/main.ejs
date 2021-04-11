@@ -1,103 +1,73 @@
 <div class="container">
   <h2>Search For Your Next Collaborator</h2>
   <form class="search-form" action="/search/index/" method="GET">
-
-  
-
-  <% if (currentUser.isBand === false) {%>    
-    <h3 class="form-header">I am looking for...</h3>  
-  <div class="form-check form-check-inline">      
-    <input class="form-check-input" type="radio" name="isBand" id="isBandF" value=false checked>
-    <label class="form-check-label" for="isBandF">a musician</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="isBand" id="isBandT" value=true>
-    <label class="form-check-label" for="isBandT">a band</label>
-  </div>
-  <% } else { %>
-    <h3>My band is looking for a musician...</h3>  
-  <% } %>
-
-
-  <!-- TODO: If "Other" selected, present text input and add value to db -->
-  <br><br>
-  
-  <div class="form-group">
-    <label for="city">IN THE CITY OF:</label>
-    <select class="form-control" id="city" name="city">
-      <option disabled selected value> -- Choose City -- </option>
-      <% cities.forEach(function(city) { %>
-      <option value="<%=city.id %>"><%=city.name %></option>
-      <% }) %> 
-    </select>
-    <small id="cityHelpBlock" class="form-text text-muted">
-      Required.
-    </small>
-  </div>
-  
-  <!-- TODO: if user.isBand "Seeking" and "Instrumentation" else -->
-  <!-- TODO: If "Other" selected, present text input and add value to db -->
-  <div class="form-group">
-    <p class="tiny-margin">WHO PLAYS:</p>
-    <small id="instrumentsHelpBlock" class="form-text text-muted">
-      Required. Select all that apply.
-    </small>
-    <% instruments.forEach(function(instrument) { %>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="instrumentCheck" id="<%= instrument.name %>" value="<%= instrument.name %>">
-      <label class="form-check-label" for="<%= instrument.name %>"><%= instrument.name %> </label>
-    </div>
-    <% }) %>     
-  </div>
-
-  <!-- TODO: If "Other" selected, present text input and add value to db -->
-  <div class="form-group">
-    <p class="tiny-margin">AND IS AVAILABLE FOR:</p>
-    <small id="collaborationsHelpBlock" class="form-text text-muted">
-      Required. Select all that apply.
-    </small>
-    <% collaborations.forEach(function(collaboration) { %>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="collaborationCheck" id="<%= collaboration.type %>" value="<%= collaboration.type %>">
-      <label class="form-check-label" for="<%= collaboration.type %>"><%= collaboration.type %> </label>
-    </div>
-    <% }) %> 
-    <!-- <div class="form-check form-check-inline">
-      <input id="collaborations" type="text" name="collaborations">
-    </div>     -->
-  </div>
-  
-  <!-- TODO: If "Other" selected, present text input and add value to db -->
-  <div class="form-group">
-    <p class="tiny-margin">PREFERRED GENRE(S) SHOULD INCLUDE:</p>    
-    <small id="genresHelpBlock" class="form-text text-muted">
-      Select all that apply.
-    </small>
-    <% genres.forEach(function(genre) { %>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="genreCheck" id="<%= genre.name %>" value="<%= genre.name %>">
-        <label class="form-check-label" for="<%= genre.name %>"><%= genre.name %> </label>
+    <!-- MUSICIAN OR BAND -->
+    <% if (currentUser.isBand === false) {%>    
+      <h3 class="form-header">I am looking for...</h3>  
+      <div class="form-check form-check-inline">      
+        <input class="form-check-input" type="radio" name="isBand" id="isBandF" value=false checked>
+        <label class="form-check-label" for="isBandF">a musician</label>
       </div>
-    <% }) %> 
-      <!-- <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="other">
-        <label class="form-check-label" for="inlineCheckbox3">Other</label>
-        <input id="genres" type="text" name="genres"> -->
-      </div>  
-    
-  <!-- <div class="form-group">
-    <label for="influences">AND HIS OR HER INFLUENCES SHOULD INCLUDE:</label>
-    <textarea class="form-control" id="influences" placeholder="ie: The Beatles, Parliament Funkadelic, ABBA" rows="3" name="influences"></textarea>
-    <small id="genresHelpBlock" class="form-text text-muted">
-      Add up to five influences, separated by commas.
-    </small>
-  </div> -->
-
-    
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="isBand" id="isBandT" value=true>
+        <label class="form-check-label" for="isBandT">a band</label>
+      </div>
+    <% } else { %>
+      <h3>My band is looking for a musician...</h3>  
+    <% } %>
+    <br><br>
+    <!-- CITY -->
+    <div class="form-group">
+      <label for="city">IN THE CITY OF:</label>
+      <select class="form-control" id="city" name="city">
+        <option disabled selected value> -- Choose City -- </option>
+        <% cities.forEach(function(city) { %>
+        <option value="<%=city.id %>"><%=city.name %></option>
+        <% }) %> 
+      </select>
+      <small id="cityHelpBlock" class="form-text text-muted">
+        Required.
+      </small>
+    </div>
+    <!-- INSTRUMENTS -->
+    <div class="form-group">
+      <p class="tiny-margin">WHO PLAYS:</p>
+      <small id="instrumentsHelpBlock" class="form-text text-muted">
+        Required. Select all that apply.
+      </small>
+      <% instruments.forEach(function(instrument) { %>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="instrumentCheck" id="<%= instrument.name %>" value="<%= instrument.name %>">
+        <label class="form-check-label" for="<%= instrument.name %>"><%= instrument.name %> </label>
+      </div>
+      <% }) %>     
+    </div>
+    <!-- COLLABORATIONS -->
+    <div class="form-group">
+      <p class="tiny-margin">AND IS AVAILABLE FOR:</p>
+      <small id="collaborationsHelpBlock" class="form-text text-muted">
+        Required. Select all that apply.
+      </small>
+      <% collaborations.forEach(function(collaboration) { %>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="collaborationCheck" id="<%= collaboration.type %>" value="<%= collaboration.type %>">
+          <label class="form-check-label" for="<%= collaboration.type %>"><%= collaboration.type %> </label>
+        </div>
+      <% }) %> 
+    </div>
+    <!-- GENRES  -->
+    <div class="form-group">
+      <p class="tiny-margin">PREFERRED GENRE(S) SHOULD INCLUDE:</p>    
+      <small id="genresHelpBlock" class="form-text text-muted">
+        Select all that apply.
+      </small>
+      <% genres.forEach(function(genre) { %>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="genreCheck" id="<%= genre.name %>" value="<%= genre.name %>">
+          <label class="form-check-label" for="<%= genre.name %>"><%= genre.name %> </label>
+        </div>
+      <% }) %> 
+    </div>  
     <input type="submit" class="btn btn-secondary" value="SEARCH">
-  </div>
-</form>
+  </form>
 </div>
-<!-- add profile photo here or wait to do that later? -->
-
-<!-- TODO: Form validation (required fields, input type) -->

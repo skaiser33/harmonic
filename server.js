@@ -8,8 +8,6 @@ const flash = require('connect-flash');
 const favicon = require('serve-favicon');
 const path = require('path')
 const isLoggedIn = require('./middleware/isLoggedIn');
-
-
 const aws = require('aws-sdk')
 const bodyParser = require('body-parser')
 const multer = require('multer')
@@ -83,11 +81,6 @@ app.get('/about', (req, res) => {
 app.post('/upload', upload.array('upl',1), function (req, res, next) {
   res.send("Uploaded!");
 });
-
-// we use the middleware in the middle of our route to the profile (or any other page we want to restrict)
-// app.get('/profile', isLoggedIn, (req, res) => {
-//   res.render('profile');
-// });
 
 app.use('/auth', require('./routes/auth'));
 app.use('/search', isLoggedIn, require('./routes/search'));

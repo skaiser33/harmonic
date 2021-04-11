@@ -1,34 +1,21 @@
-<!-- TODO add button to save search RESULTS
-TODO add button to go back to search -->
 
-<!-- <form method="get" action="../../search/" autocomplete="on"> -->
-<!-- <form onclick="window.history.go(-1)" > -->
-  <!-- <button class="btn btn-primary" value="%= storedSearchString %>" name="modifySearch" type="submit">MODIFY SEARCH</button> -->
-  <!-- <button class="btn btn-primary" name="modifySearch" type="submit">MODIFY SEARCH</button>
-</form> -->
 <div class="container justify-content-center">
-<form class="btn-form" method="post" action="../../search/savesearch/">
-  <button class="btn btn-primary" value="<%= storedSearchString %>" name="storedSearchString" type="submit">SAVE THIS SEARCH</button>
-</form>
-
+  <form class="btn-form" method="post" action="../../search/savesearch/">
+    <button class="btn btn-primary" value="<%= storedSearchString %>" name="storedSearchString" type="submit">SAVE THIS SEARCH</button>
+  </form>
   <% if (users.length) { %> 
     <h1>SEARCH RESULTS</h1>
-    <!-- <div class="container"> -->
-      <% users.forEach(function(user) { %>
-        <div class="card">
-          <div class="card-body">
-            <img class="rounded-circle profile-photo-small align-middle" src="<%= user.profilePhotoUrl %>" width=80 height=80>
-            <a class="starred-name align-middle" href="../../profile/<%= user.id %>"><%= user.name %></a>
-          </div>
+    <% users.forEach(function(user) { %>
+      <div class="card">
+        <div class="card-body">
+          <img class="rounded-circle profile-photo-small align-middle" src="<%= user.profilePhotoUrl %>" width=80 height=80>
+          <a class="starred-name align-middle" href="../../profile/<%= user.id %>"><%= user.name %></a>
         </div>
-        <br>
-      <% }) %>   
-    </div>  
-
-
+      </div>
+      <br>
+    <% }) %>   
   <% } else { %>  
     <h2>No Matches</h2>
     <h4>Refine Your Search and Try Again</h4>
   <% } %>  
-</div>
 </div>

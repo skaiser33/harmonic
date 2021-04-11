@@ -1,27 +1,17 @@
-<!-- TODO add button to save search RESULTS
-TODO add button to go back to search -->
 <div class="container">
   <% if (searches.length) { %> 
     <h1>Your Saved Searches</h1>
-      <% searches.forEach(function(search) { %>
-        <div class="card">
-          <div class="card-body">           
-            <h5><a class="search-title" href="../../search/index/?<%= search.content %>"><%= search.name %></a></h5>
-            <p class="date my-auto">Created on <%= dateFormat(search.createdAt, "dddd, mmmm dS, yyyy, h:MM TT"); %> </p> 
-          </div>
+    <% searches.forEach(function(search) { %>
+      <div class="card">
+        <div class="card-body">           
+          <h5><a class="search-title" href="../../search/index/?<%= search.content %>"><%= search.name %></a></h5>
+          <p class="date my-auto">Created on <%= dateFormat(search.createdAt, "dddd, mmmm dS, yyyy, h:MM TT"); %> </p> 
         </div>
-        <br>
-      <% }) %>   
-      
-
-
+      </div>
+      <br>
+    <% }) %>   
   <% } else { %>  
     <h2>No Saved Searches Yet</h2>
     <h4>Start a new search <a href="/search">here</a>.</h4>
   <% } %>  
-  <!-- REFINE SEARCH btn -->
-  
-  <!-- SAVE THIS SEARCH btn, modal popup to name search-->
-    <!-- needs to save req.query -->
-      <!-- clicking on the search later will GET search/index/${req.query} -->
 </div>
