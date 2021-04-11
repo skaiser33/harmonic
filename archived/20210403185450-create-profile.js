@@ -1,20 +1,20 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('profiles', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      email: {
-        type: Sequelize.STRING
+      userId: {
+        type: Sequelize.INTEGER
+      },
+      cityId: {
+        type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
-      },
-      password: {
         type: Sequelize.STRING
       },
       isBand: {
@@ -28,6 +28,9 @@ module.exports = {
       },
       recordingCredits: {
         type: Sequelize.ARRAY(Sequelize.TEXT)
+      },
+      canRecordRemotely: {
+        type: Sequelize.BOOLEAN
       },
       spotifyEmbedUrl: {
         type: Sequelize.STRING
@@ -58,6 +61,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('profiles');
   }
 };

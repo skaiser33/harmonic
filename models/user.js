@@ -12,7 +12,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.user.belongsTo(models.city)
+      models.user.hasMany(models.testimonial)
+      models.user.hasMany(models.message)
+      models.user.hasMany(models.search)
+      models.user.belongsToMany(models.instrument, {through: "usersInstruments"})
+      models.user.belongsToMany(models.genre, {through: "usersGenres"})
+      models.user.belongsToMany(models.collaboration, {through: "usersCollaborations"})
+      models.user.belongsToMany(models.user,{ through: "favorites", as: "favoriter", foreignKey: "favoriterId" });
+      models.user.belongsToMany(models.user,{ through: "favorites", as: "favorited", foreignKey: "favoritedId" });
+      models.user.belongsToMany(models.user,{ through: "unfavorites", as: "unfavoriter", foreignKey: "unfavoriterId" });
+      models.user.belongsToMany(models.user,{ through: "unfavorites", as: "unfavorited", foreignKey: "unfavoritedId" });
+      
     }
     // Compares entered password to hashed password and returns boolean
     validPassword(passwordTyped) {
@@ -51,7 +62,18 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Password must be between 8 and 99 characters'
         }
       }
-    }
+    },
+    cityId: DataTypes.INTEGER,
+    isBand: DataTypes.BOOLEAN,
+    profilePhotoUrl: DataTypes.STRING,
+    influences: DataTypes.ARRAY(DataTypes.TEXT),
+    recordingCredits: DataTypes.ARRAY(DataTypes.TEXT),
+    spotifyEmbedUrl: DataTypes.STRING,
+    soundcloudEmbedUrl: DataTypes.STRING,
+    youtubeEmbedUrl: DataTypes.STRING,
+    localDraw: DataTypes.INTEGER,
+    nationalDraw: DataTypes.INTEGER,
+    lastActive: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'user',

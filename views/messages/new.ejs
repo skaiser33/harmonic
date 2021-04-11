@@ -1,0 +1,12 @@
+
+<div class="container">
+  <h2>NEW MESSAGE TO <%= user.name %></h2>
+  <form action="/messages/new/<%= user.id %>" method="post">
+    <div class="form-group">
+      <label for="influences">Enter Your Message Here:</label>
+      <textarea class="form-control" id="message-content" placeholder="Hey Mr. Tambourine Man..." rows="6" name="content"></textarea> 
+    </div>
+    <input type="submit" class="btn btn-primary" value="SEND MESSAGE">
+  </form> 
+</div>
+

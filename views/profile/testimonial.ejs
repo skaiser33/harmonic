@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>NEW TESTIMONIAL FOR <%= user.name %></h2>
+  <form action="../../profile/testimonial/<%= user.id %>" method="post">
+    <div class="form-group">
+      <label for="influences">Enter Your Testimonial Here:</label>
+      <textarea class="form-control" id="message-content" placeholder="Papa was a rolling stone..." rows="6" name="content"></textarea> 
+    </div>
+    <input type="submit" class="btn btn-primary" value="SUBMIT TESTIMONIAL">
+  </form> 
+</div>
+

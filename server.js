@@ -1,19 +1,36 @@
+//REQUIRES
 require('dotenv').config();
 const express = require('express');
 const layouts = require('express-ejs-layouts');
 const session = require('express-session');
 const passport = require('./config/ppConfig');
 const flash = require('connect-flash');
+const favicon = require('serve-favicon');
+const path = require('path')
 const isLoggedIn = require('./middleware/isLoggedIn');
+const aws = require('aws-sdk')
+const bodyParser = require('body-parser')
+const multer = require('multer')
+const multerS3 = require('multer-s3')
+
+aws.config.update({
+  secretAccessKey: process.env.AWS_ACCESS_KEY,
+  accessKeyId: process.env.AWS_SECRET_KEY,
+  region: 'us-east-1'
+});
 
 const app = express();
+const s3 = new aws.S3();
 
 //MIDDLEWARE
 app.set('view engine', 'ejs');
-
 app.use(require('morgan')('dev'));
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
+// app.use(favicon(path.join(__dirname + '/public/assets/favicon.ico')));
+app.use(favicon(path.join(__dirname + '/public/favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(layouts);
 //* setup the session with the following:
 app.use(session({
@@ -39,17 +56,37 @@ app.use((req, res, next) => {
   next();
 });
 
+//AWS
+const upload = multer({
+  storage: multerS3({
+      s3: s3,
+      bucket: 'guitarcollector-sei0119',
+      acl: 'public-read',
+      key: function (req, file, cb) {
+          console.log(file);
+          cb(null, file.originalname); //use Date.now() for unique file keys
+      }
+  })
+});
+
+//ROUTES
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-// we use the middleware in the middle of our route to the profile (or any other page we want to restrict)
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
+app.post('/upload', upload.array('upl',1), function (req, res, next) {
+  res.send("Uploaded!");
 });
 
 app.use('/auth', require('./routes/auth'));
+app.use('/search', isLoggedIn, require('./routes/search'));
+app.use('/profile', isLoggedIn, require('./routes/profile'));
+app.use('/messages', isLoggedIn, require('./routes/messages'));
 
-var server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
+var server = app.listen(process.env.PORT || 3000, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 
 module.exports = server;

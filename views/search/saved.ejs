@@ -1,0 +1,17 @@
+<div class="container">
+  <% if (searches.length) { %> 
+    <h1>Your Saved Searches</h1>
+    <% searches.forEach(function(search) { %>
+      <div class="card">
+        <div class="card-body">           
+          <h5><a class="search-title" href="../../search/index/?<%= search.content %>"><%= search.name %></a></h5>
+          <p class="date my-auto">Created on <%= dateFormat(search.createdAt, "dddd, mmmm dS, yyyy, h:MM TT"); %> </p> 
+        </div>
+      </div>
+      <br>
+    <% }) %>   
+  <% } else { %>  
+    <h2>No Saved Searches Yet</h2>
+    <h4>Start a new search <a href="/search">here</a>.</h4>
+  <% } %>  
+</div>

@@ -1,107 +1,111 @@
-# Express Authentication
+# Harmonic
 
-Express authentication template using Passport + flash messages + custom middleware
+## Deployed At:
+http://harmonic.herokuapp.com
 
-## What it includes
+## Description
 
-* Sequelize user model / migration
-* Settings for PostgreSQL
-* Passport and passport-local for authentication
-* Sessions to keep user logged in between pages
-* Flash messages for errors and successes
-* Passwords that are hashed with BCrypt
-* EJS Templating and EJS Layouts
+The Harmonic app allows logged-in users to search the user-base for solo musicians or bands for recording, performances, or long-term collaborations. Immediately after signup, the user will be asked to complete a detailed profile. 
 
-### User Model
+The heart of the app is the search page, where the user can set filters in a form with checkboxes and dropdown menus (ie: "I am looking for a musician in L.A. who plays bass and can record remotely"  or "I am looking to join a metal band that needs a drummer and lists Slayer as an influence") and see a list of musicians or bands matching the search criteria. 
 
-| Column Name | Data Type | Notes |
-| --------------- | ------------- | ------------------------------ |
-| id | Integer | Serial Primary Key, Auto-generated |
-| name | String | Must be provided |
-| email | String | Must be unique / used for login |
-| password | String | Stored as a hash |
-| createdAt | Date | Auto-generated |
-| updatedAt | Date | Auto-generated |
+From this index of search results, the user can select a band/musician from the list and be redirected to that user's detailed profile page. The profile page allows the user to add the band/musician to favorites with a "star", give a testimonial, contact the band/musician through in-app messaging, or return to search results. The index page will also allow the user to edit the search criteria or save the search parameters for future use.
 
-### Default Routes
 
-| Method | Path | Location | Purpose |
-| ------ | ---------------- | -------------- | ------------------- |
-| GET | / | server.js | Home page |
-| GET | /auth/login | auth.js | Login form |
-| GET | /auth/signup | auth.js | Signup form |
-| POST | /auth/login | auth.js | Login user |
-| POST | /auth/signup | auth.js | Creates User |
-| GET | /auth/logout | auth.js | Removes session info |
-| GET | /profile | server.js | Regular User Profile |
+## Technologies Used
+- Express
+- Sequelize
+- Postgres
+- EJS
+- CSS
+- Boostrap
+- HTML
+- VSCode
+- Google Chrome Developer Tools
 
-## Steps To Use
+## User Stories
+As a user, I want:
 
-#### 1. Create a new repo on Github and use your 'express-authentication' as the template
+- to create a secure account and be logged in automatically. 
+- to log in securely and log out when I am done using the app.
+- an intuitive and clean UI with a responsive design that is equally user-friendly on mobile devices and desktop screens.
+- to set up a detailed musician/band profile that includes instruments played, influences, genre(s), credits, and embedded audio/video.
+- to search the user-base for solo musicians or bands for recording, performances, or long-term collaborations using collaboration-type filters.
+- to select a band/musician from the search results and be redirected to that user's detailed profile page.
+- to add a band/musician to my favorites with a "star", give a testimonial, and contact the band/musician through in-app messaging.
+- to save my search parameters for future use.
 
-When we are finished with this boilerplate, we are going to make it a template on Github that will allow us to create a new repo on Github with all this code already loaded in.
-* Go to `github.com` and create a new repository. In the template dropdown, choose this template.
-* Clone your new repo to your local machine
-* Get Codin'!
 
-#### 2. Delete any .keep files
+## Installation Steps
+- Fork and clone Github repo. 
+- Install all npm packages. ```npm install```
+- Create .env file and populate your own keys based on the .env_template file included in the cloned repo.
+- Run the following commands in your terminal to create the database and migrate the models:
+  ```createdb harmonic```
+  ```sequelize db:migrate```
+  ```sequelize db:seed:all``` (optional -- a seed file has been provided to help you get up and running)
 
-The `.keep` files are there to maintain the file structure of the auth. If there is a folder that has nothing in it, git won't add it. The dev work around is to add a file to it that has nothing in it, just forces git to keep the folder so we can use it later.
 
-#### 3. Install node modules from the package.json
+## Data Models and ERD
 
-```
-npm install
-```
+![Data Models and ERD](https://i.imgur.com/lhjZxMb.png)
 
-(Or just `npm i` for short)
 
-#### 4. Customize with new project name
+## Major Hurdles
+- Properly scoping a full-stack solo project within a week. 
+- Unanticipated limitations to certain Sequelize queries. 
+- The complexities of certain form interactions with database queries. 
 
-Remove defaulty type stuff. Some areas to consider are:
+## Major Victories
+- While I wasn't able to execute all scoped features, the major components of the app are all present is some form. 
+- Though I have a ways to go, CSS is starting to feel less intimidating.
+- I've enjoyed thinking about how to launch an app like this. (ie: an invite-only pre-launch registration to establish sufficient userbase, paid tiers with extra features and unpaid tiers with ads, sponsorship/partnership with a company like Guitar Center)
+- This is an app I would use!
 
-* Title in `layout.ejs`
-* Description/Repo Link in `package.json`
-* Remove boilerplate's README content and replace with new project's readme
+## Future Goals
+- A more refined messaging feature, possibly incorporating real-time chat. 
+- A single user will be able to have multiple profile types (ie: a musician who plays in a band but is open to other projects). 
+- There will be a profile category for music professionals (ie: managers, producers, music directors).
+- Users will  be able to see LinkedIn-style connections.
+- Testimonials will require user approval before being displayed on that user's page.
+- "Unfavorites" feature so that users can prevent musicians/bands from coming up in future search results. 
+- More extensive front-end error validation.
+- Further refinement of styling and responsive design.
+- Welcome email for new users.
+- Third-party / Oauthlogin capabilities.
+- Refactoring for more concise code.
 
-#### 5. Create a new database for the new project
 
-Using the sequelize command line interface, you can create a new database from the terminal.
 
-```
-createdb <new_db_name>
-```
 
-#### 6. Update `config.json`
+## Screenshots
 
-* Change the database name
-* Other settings are likely okay, but check username, password, and dialect
+Home Page
 
-#### 7. Check the models and migrations for relevance to your project's needs
+![Home Page](https://i.imgur.com/GyMNY8y.jpg)
 
-For example, if your project requires a birthdate field, then don't add that in there. 
 
-> When changing your models, update both the model and the migration.
+About Page
 
-#### 8. Run the migrations
+![About Page](https://i.imgur.com/srlpM2U.jpg)
 
-```
-sequelize db:migrate
-```
+Search Page
 
-#### 9. Add a `.env` file with the following fields:
+![Search Page](https://i.imgur.com/pOmyHIC.jpg)
 
-* SESSION_SECRET: Can be any random string; usually a hash in production
-* PORT: Usually 3000 or 8000
 
-#### 10. Run server; make sure it works
+Messages Page
 
-```
-nodemon
-```
+![Messages Page](https://i.imgur.com/IEEOVSs.png)
 
-or
 
-```
-node index.js
-```
+
+## Original Wireframes
+
+Search Page
+
+![Search Page](https://i.imgur.com/6quKZP2.jpg)
+
+Profile Page
+
+![Profile Page](https://i.imgur.com/UtTT2Tp.jpg)

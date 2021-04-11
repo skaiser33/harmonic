@@ -1,0 +1,26 @@
+<!-- TODO: verify that currentuser is looking at his own messages only -->
+
+<div class="container"> 
+  <% if (messages.length) { %>
+    <h1>YOUR MESSAGES</h1>  
+    <% messages.forEach(function(message) { %>
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <img class="rounded-circle profile-photo-small" src="<%= message.sender.profilePhotoUrl %> " alt="<%= message.sender.name %> profile photo">
+            <h5 class="message-from my-auto">From: &nbsp;   <a href="/profile/<%=message.sender.id %>"><%= message.sender.name %></a></h5>   
+            <p class="date my-auto ml-auto"><%= dateFormat(message.createdAt, "dddd, mmmm dS, yyyy, h:MM TT"); %> </p> 
+          </div>
+          <p class="card-content"><%= `${message.content}`  %></p>
+          <form class="btn-form" method="get" action="../messages/new/<%= message.sender.id %>">
+            <input class="btn btn-primary" type="submit" value="REPLY" />
+          </form>
+        </div>
+      </div>
+    <% }) %> 
+  <% } else { %> 
+    <h2>No Messages!</h2>
+    <h3>We hope that you find someone's message in a bottle soon.</h3>
+  <% } %> 
+</div>
+
