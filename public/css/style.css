@@ -515,6 +515,12 @@ li {
   color: rgb(245, 80, 80)
 }
 
+.starred-name {
+  font-size: .9em;
+}
+
+
+
 /* .center {
   align-items: center;
 } */
@@ -639,6 +645,10 @@ Bootstrap 4 breakpoints
 
   .btn {
     font-size: .7em;
+  }
+
+  .starred-name {
+    font-size: 1.7em;
   }
 
   .spotify {
