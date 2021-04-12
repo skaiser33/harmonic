@@ -57,7 +57,7 @@ As a user, I want:
 - The complexities of certain form interactions with database queries. 
 
 ## Major Victories
-- While I wasn't able to execute all scoped features, the major components of the app are all present is some form. 
+- While I wasn't able to execute all scoped features, the major components of the app are all present in some form. 
 - Though I have a ways to go, CSS is starting to feel less intimidating.
 - I've enjoyed thinking about how to launch an app like this. (ie: an invite-only pre-launch registration to establish sufficient userbase, paid tiers with extra features and unpaid tiers with ads, sponsorship/partnership with a company like Guitar Center)
 - This is an app I would use!
@@ -74,6 +74,7 @@ As a user, I want:
 - Welcome email for new users.
 - Third-party / Oauthlogin capabilities.
 - Refactoring for more concise code.
+- Possible front-end refactor using React and SASS.
 
 
 

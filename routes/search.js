@@ -41,7 +41,6 @@ router.get('/index', async (req, res) => {
     function doesArrayInclude(arr, target){
       return arr.every(value => target.includes(value));
     }
-
     
     typeof (req.query.genreCheck) === "string" ? checkedGenres = [req.query.genreCheck] : checkedGenres = req.query.genreCheck
 
