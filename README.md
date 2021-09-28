@@ -18,7 +18,7 @@ From this index of search results, the user can select a band/musician from the 
 - Postgres
 - EJS
 - CSS
-- Boostrap
+- Bootstrap
 - HTML
 - VSCode
 - Google Chrome Developer Tools
