@@ -1,5 +1,6 @@
-# Fetching the minified node image on apline linux
-FROM node:slim
+
+# Fetching the minified node image on Alpine Linux
+FROM node:alpine
 
 # Declaring env
 ENV NODE_ENV production
@@ -17,10 +18,7 @@ RUN npm install
 RUN npm install pm2 -g
 
 # Starting our application
-
-CMD ["npm", "start"]
-# alt CMD:
-# CMD pm2 start process.yml && tail -f /dev/null
+CMD npm start
 
 # Exposing server port
-EXPOSE 3000
+EXPOSE 3000/tcp
