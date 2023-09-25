@@ -17,7 +17,10 @@ RUN npm install
 RUN npm install pm2 -g
 
 # Starting our application
-CMD pm2 start process.yml && tail -f /dev/null
+
+CMD ["npm", "start"]
+# alt CMD:
+# CMD pm2 start process.yml && tail -f /dev/null
 
 # Exposing server port
 EXPOSE 3000
