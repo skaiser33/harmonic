@@ -18,7 +18,7 @@ RUN npm install
 RUN npm install pm2 -g
 
 # Starting our application
-CMD npm start
+CMD node server.js
 
 # Exposing server port
 EXPOSE 3000/tcp
